@@ -1,0 +1,14 @@
+-
+  _id: 626cd16dc8fd4dcbe7a14c5d
+  first_name: andres
+  last_name: cto
+  phone: 558202022020
+  _email: a.cto@organization.com
+  password: gAAAAABibNFtwUEnui_CMQPnMnikfh6vd9osQlTRX97CUIaTAnckZSOag2WqCA_38oSHfMSlJ2OAFw-qkktejh5BdlhIFNj2lg==
+  uuid: 221781d0-ad9a-4827-b6a4-929f61c07441
+  created: 2022-04-30T01:04:29.243Z
+  modified: 2022-04-30T01:04:29.243Z
+  username: acto221781d0
+  phone_country_code: 52
+  is_active: true
+  company_uuid: ddc65e81-3439-4edd-a6d8-27808187b0fa

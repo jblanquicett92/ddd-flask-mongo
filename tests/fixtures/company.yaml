@@ -1,0 +1,59 @@
+-
+  _id: 5cb58e2b8b403d177092b667
+  name: organization
+  phone: 558015
+  uuid: ddc65e81-3439-4edd-a6d8-27808187b0e8
+  is_active: true
+  email: info@organization.com
+  created: 2022-04-29T15:54:00.295Z
+  modified: 2022-04-29T15:54:00.295Z
+
+-
+  _id: 626813768fa725216f22c4e9
+  name: organization2.0
+  phone: 668015
+  uuid: ddc65e81-3439-4edd-a6d8-27808187b091
+  is_active: true
+  email: info@organization2.com
+  created: 2022-04-29T15:54:00.295Z
+  modified: 2022-04-29T15:54:00.295Z
+
+-
+  _id: 62681d1ddbc39e822e4a64aa
+  name: organization3.0
+  phone: 668115
+  uuid: ddc65e81-3439-4edd-a6d8-27808187b0fa
+  is_active: true
+  email: info@organization3.com
+  created: 2022-04-29T15:54:00.295Z
+  modified: 2022-04-29T15:54:00.295Z
+
+-
+  _id: 629fbcada94443c95361a929
+  name: amazon
+  phone: 551023
+  uuid: aca2df2c-ee91-48b8-832d-06ecad511c45
+  is_active: true
+  email: info@amazon.com
+  created: 2022-05-29T15:54:00.295Z
+  modified: 2022-05-29T15:54:00.295Z
+
+-
+  _id: 629fbcada94443c95361a92c
+  name: mercado libre
+  phone: 288954
+  uuid: b2c00d53-eeb4-436a-9711-6cffeaa3caf8
+  is_active: true
+  email: info@meli.com
+  created: 2022-05-29T16:54:00.295Z
+  modified: 2022-05-29T16:54:00.295Z
+
+-
+  _id: 629fbcada94443c95361a92f
+  name: izzi
+  phone: 274564
+  uuid: d6c01259-322d-4e04-aae0-14549c1404c3
+  is_active: true
+  email: info@izzi.com
+  created: 2022-05-31T16:54:00.295Z
+  modified: 2022-05-31T16:54:00.295Z

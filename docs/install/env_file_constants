@@ -1,0 +1,33 @@
+# ms Envs
+FLASK_SECRET_KEY=The flask secret key
+FLASK_APP=Directory to en-route the flask application and config
+FLASK_ENV=Flask API web framework working environment
+ENVIRONMENT=The environment, can be: "local", "test", "producccion"
+FERNET_SECRET_KEY=The user's password encrypt secret key
+MASSIVE_USER_BY_COMPANY_SECRET_PASSPHRASE=The passphrase to use massive functions
+# Database Envs
+DB_NAME=Database name
+DB_ROOT_USERNAME=Database user
+DB_ROOT_PASSWORD=Database password
+MONGODB_HOST=Database host
+MONGODB_PORT=Database port
+MONGO_CLUSTER_CONN=URL to MongoDB database server
+# Slack Integrator
+SLACK_CHANNEL_ID=Channel ID of Slack to send messages
+SLACK_CHANNEL=Channel name of Slack to send messages
+SLACK_USERNAME=Slack bot username to authenticate
+SLACK_TOKEN_BOT=Token of the Slack Bot to connect and authenticate
+SLACK_URL_POST_MESSAGE=
+                        To upload file on channel: "https://slack.com/api/files.upload",
+                        To send raw messages only: "https://slack.com/api/chat.postMessage"
+# Email Integrator
+EMAIL_SERVER_PORT=Email Server port
+EMAIL_SMTP_SERVER=Email Server URL
+SENDER_ACCOUNT_EMAIL=Email sender user account
+SENDER_ACCOUNT_PASSWORD=Email sender user account email password
+RECEIPT_ACCOUNT_EMAIL=List of user account emails to send message
+EMAIL_SUBJECT_TXT=Text of the email subject message
+# Monitoring Integrators
+# Sentry
+SENTRY_DSN=Sentry DSN of the microservice project configured on Sentry platform
+SENTRY_SAMPLE_RATE=Sentry frequency rate send messages

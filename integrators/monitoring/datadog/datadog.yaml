@@ -1,0 +1,192 @@
+#########################
+## Basic Configuration ##
+#########################
+
+api_key: 326dc509103415ddaa132688d33412fa
+
+
+# site: datadoghq.com
+site: http://localhost:8126/v0.4/traces
+
+
+##################################
+## Log collection Configuration ##
+##################################
+
+## @param logs_enabled - boolean - optional - default: false
+## @env DD_LOGS_ENABLED - boolean - optional - default: false
+## Enable Datadog Agent log collection by setting logs_enabled to true.
+#
+logs_enabled: true
+
+## @param logs_config - custom object - optional
+## Enter specific configurations for your Log collection.
+## Uncomment this parameter and the one below to enable them.
+## See https://docs.datadoghq.com/agent/logs/
+logs_config:
+
+  ## @param container_collect_all - boolean - optional - default: false
+  ## @env DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL - boolean - optional - default: false
+  ## Enable container log collection for all the containers (see ac_exclude to filter out containers)
+  container_collect_all: false
+
+  ## @param logs_dd_url - string - optional
+  ## @env DD_LOGS_CONFIG_DD_URL - string - optional
+  ## Define the endpoint and port to hit when using a proxy for logs. The logs are forwarded in TCP
+  ## therefore the proxy must be able to handle TCP connections.
+  logs_dd_url: <ENDPOINT>:<PORT>
+
+  ## @param logs_no_ssl - boolean - optional - default: false
+  ## @env DD_LOGS_CONFIG_LOGS_NO_SSL - optional - default: false
+  ## Disable the SSL encryption. This parameter should only be used when logs are
+  ## forwarded locally to a proxy. It is highly recommended to then handle the SSL encryption
+  ## on the proxy side.
+  logs_no_ssl: false
+
+  ## @param processing_rules - list of custom objects - optional
+  ## @env DD_LOGS_CONFIG_PROCESSING_RULES - list of custom objects - optional
+  ## Global processing rules that are applied to all logs. The available rules are
+  ## "exclude_at_match", "include_at_match" and "mask_sequences". More information in Datadog documentation:
+  ## https://docs.datadoghq.com/agent/logs/advanced_log_collection/#global-processing-rules
+  processing_rules:
+    - type: <RULE_TYPE>
+      name: <RULE_NAME>
+      pattern: <RULE_PATTERN>
+
+  ## @param use_http - boolean - optional - default: false
+  ## @env DD_LOGS_CONFIG_USE_HTTP - boolean - optional - default: false
+  ## By default, logs are sent through TCP, use this parameter
+  ## to send logs in HTTPS batches to port 443
+  use_http: true
+
+  ## @param use_tcp - boolean - optional - default: false
+  ## @env DD_USE_TCP - boolean - optional - default: false
+  ## By default, logs are sent through HTTP if possible, use this parameter
+  ## to send logs in TCP
+  use_tcp: true
+
+  ## @param use_compression - boolean - optional - default: false
+  ## @env DD_LOGS_CONFIG_USE_COMPRESSION - boolean - optional - default: false
+  ## This parameter is available when sending logs with HTTPS. If enabled, the Agent
+  ## compresses logs before sending them.
+  use_compression: true
+
+  ## @param compression_level - integer - optional - default: 6
+  ## @env DD_LOGS_CONFIG_COMPRESSION_LEVEL - boolean - optional - default: false
+  ## The compression_level parameter accepts values from 0 (no compression)
+  ## to 9 (maximum compression but higher resource usage).
+  compression_level: 6
+
+  ## @param batch_wait - integer - optional - default: 5
+  ## @env DD_LOGS_CONFIG_BATCH_WAIT - integer - optional - default: 5
+  ## The maximum time the Datadog Agent waits to fill each batch of logs before sending.
+  batch_wait: 5
+
+
+
+
+###########################
+## Logging Configuration ##
+###########################
+
+## @param log_level - string - optional - default: info
+## @env DD_LOG_LEVEL - string - optional - default: info
+## Minimum log level of the Datadog Agent.
+## Valid log levels are: trace, debug, info, warn, error, critical, and off.
+## Note: When using the 'off' log level, quotes are mandatory.
+#
+# log_level: 'info'
+
+## @param log_file - string - optional
+## @env DD_LOG_FILE - string - optional
+## Path of the log file for the Datadog Agent.
+## See https://docs.datadoghq.com/agent/guide/agent-log-files/
+#
+# log_file: <AGENT_LOG_FILE_PATH>
+
+## @param log_format_json - boolean - optional - default: false
+## @env DD_LOG_FORMAT_JSON - boolean - optional - default: false
+## Set to 'true' to output Agent logs in JSON format.
+#
+# log_format_json: false
+
+## @param log_to_console - boolean - optional - default: true
+## @env DD_LOG_TO_CONSOLE - boolean - optional - default: true
+## Set to 'false' to disable Agent logging to stdout.
+#
+# log_to_console: true
+
+## @param disable_file_logging - boolean - optional - default: false
+## @env DD_DISABLE_FILE_LOGGING - boolean - optional - default: false
+## Set to 'true' to disable logging to the log file.
+#
+# disable_file_logging: false
+
+## @param log_file_max_size - custom - optional - default: 10MB
+## @env DD_LOG_FILE_MAX_SIZE - custom - optional - default: 10MB
+## Maximum size of one log file. Use either a size (e.g. 10MB) or
+## provide value in bytes: 10485760
+#
+# log_file_max_size: 10MB
+
+## @param log_file_max_rolls - integer - optional - default: 1
+## @env DD_LOG_FILE_MAX_ROLLS - integer - optional - default: 1
+## Maximum amount of "old" log files to keep.
+## Set to 0 to not limit the number of files to create.
+#
+# log_file_max_rolls: 1
+
+## @param log_to_syslog - boolean - optional - default: false
+## @env DD_LOG_TO_SYSLOG - boolean - optional - default: false
+## Set to 'true' to enable logging to syslog.
+## Note: Even if this option is set to 'false', the service launcher of your environment
+## may redirect the Agent process' stdout/stderr to syslog. In that case, if you wish
+## to disable logging to syslog entirely, set 'log_to_console' to 'false' as well.
+#
+# log_to_syslog: false
+
+## @param syslog_uri - string - optional
+## @env DD_SYSLOG_URI - string - optional
+## Define a custom remote syslog uri if needed. If 'syslog_uri' is left undefined/empty,
+## a local domain socket connection is attempted.
+#
+# syslog_uri: <SYSLOG_URI>
+
+## @param syslog_rfc - boolean - optional - default: false
+## @env DD_SYSLOG_RFC - boolean - optional - default: false
+## Set to 'true' to output in an RFC 5424-compliant format for Agent logs.
+#
+# syslog_rfc: false
+
+## @param syslog_pem - string - optional
+## @env DD_SYSLOG_PEM - string - optional
+## If TLS enabled, you must specify a path to a PEM certificate here.
+#
+# syslog_pem: <PEM_CERTIFICATE_PATH>
+
+## @param syslog_key - string - optional
+## @env DD_SYSLOG_KEY - string - optional
+## If TLS enabled, you must specify a path to a private key here.
+#
+# syslog_key: <PEM_KEY_PATH>
+
+## @param syslog_tls_verify - boolean - optional - default: true
+## @env DD_SYSLOG_TLS_VERIFY - boolean - optional - default: true
+## If TLS enabled, you may enforce TLS verification here.
+#
+# syslog_tls_verify: true
+
+## @param log_format_rfc3339 - boolean - optional - default false
+## @env DD_LOG_FORMAT_RFC3339 - boolean - optional - default false
+## If enabled the Agent will log using the RFC3339 format for the log time.
+#
+# log_format_rfc3339: false
+
+## @param log_all_goroutines_when_unhealthy - boolean - optional - default false
+## @env DD_LOG_ALL_GOROUTINES_WHEN_UNHEALTHY - boolean - optional - default false
+## If enabled, when the health probe of an internal component fails, the stack traces
+## of all the goroutines are logged.
+#
+# log_all_goroutines_when_unhealthy: false
+
+DD_LOGS_ENABLED: true

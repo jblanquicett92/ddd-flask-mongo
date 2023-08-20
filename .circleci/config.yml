@@ -1,0 +1,261 @@
+version: 2.1
+
+orbs:
+  # GCP GKE Orbs
+  gcp-cli: circleci/gcp-cli@2.1.0
+  gcp-gcr: circleci/gcp-gcr@0.13.0
+  gcp-gke: circleci/gcp-gke@1.1.0
+  # Utils Orbs
+  slack: circleci/slack@4.4.4
+  envsubst: sawadashota/envsubst@1.1.0
+
+jobs:
+  install_and_initialize_cli:
+    description: Connection to GCP Cloud provider
+    executor: gcp-cli/default
+    steps:
+      - checkout
+      - gcp-cli/install
+      - gcp-cli/initialize
+  build-and-push-image:
+    executor: gcp-gcr/default
+    steps:
+      - checkout
+      - gcp-gcr/gcr-auth
+      - gcp-gcr/build-image:
+          path: ./k8s-deployments
+          image:  ${GITHUB_URL}/${CIRCLE_PROJECT_REPONAME}
+          tag: $CIRCLE_SHA1
+      - gcp-gcr/push-image:
+          image:  ${GITHUB_URL}/${CIRCLE_PROJECT_REPONAME}
+          tag: $CIRCLE_SHA1
+          
+# ----------- Uncomment this if you're gonna build a service for an Event Consumer ----------------
+
+  # build-and-push-stream-image:
+    # executor: gcp-gcr/default
+    # steps:
+      # - add_ssh_keys:
+          # fingerprints:
+            # - "e6:3f:72:f6:31:6d:9a:e1:d8:09:4f:40:7d:73:55:90"
+      # - checkout
+      # - gcp-gcr/gcr-auth
+      # - gcp-gcr/build-image:
+          # path: ./k8s-deployments/consumer
+          # image: ${GITHUB_URL}/${CIRCLE_PROJECT_REPONAME}-consumer
+          # tag: $CIRCLE_SHA1
+      # - gcp-gcr/push-image:
+          # image: ${GITHUB_URL}/${CIRCLE_PROJECT_REPONAME}-consumer
+          # tag: $CIRCLE_SHA1
+         
+#---------------------------------------------------------------------------------------------
+
+  update_secrets_on_k8s:
+    description: Connection to GCP Cloud provider
+    executor: gcp-gke/default
+    steps:
+      - run: 
+          name: "Checking required environment variables"
+          command: | 
+            if [[ -z "$K8S_CLUSTER" || -z "$K8S_NAMESPACE" || -z "$VAULT_ADDR"  || -z "$VAULT_SECRETS" ]]; then
+              exit 1
+            else
+              exit 0
+            fi
+      - checkout
+      - gcp-cli/install
+      - gcp-cli/initialize
+      - gcp-gke/install 
+      - envsubst/install
+      - gcp-gke/update-kubeconfig-with-credentials:
+          cluster: ${K8S_CLUSTER} 
+      - run:
+          name: delete existent job
+          command: envsubst < ./k8s-deployments/manifest.yml | kubectl delete -f -
+      - run:
+          name: apply new job
+          command: envsubst < ./k8s-deployments/manifest.yml | kubectl apply -f -
+      #- slack/notify:
+      #    event: fail
+      #    mentions: '@channel'
+      #    template: basic_fail_1
+      
+#---------------------------------------------------------------------------------------------
+
+  deploy-on-k8s:
+    executor: gcp-gke/default
+    steps:
+      - gcp-cli/install
+      - gcp-cli/initialize
+      - gcp-gke/install
+      - gcp-gke/rollout-image:
+          cluster: $K8S_CLUSTER
+          container: ${CIRCLE_PROJECT_REPONAME}
+          deployment: ${CIRCLE_PROJECT_REPONAME}
+          namespace: ${K8S_NAMESPACE}
+          image: ${REGISTRY_URL}/${GITHUB_URL}/${CIRCLE_PROJECT_REPONAME}
+          tag: $CIRCLE_SHA1
+      - run:
+         name: Create deployment if rollout fails
+         command: envsubst < ./k8s-deployments/deployment.yml | kubectl apply -f -
+         when: on_fail  
+
+#---------------Uncomment this to deploy your consumer in kubernetes-------------------------
+
+      # - gcp-gke/rollout-image:
+          # cluster: $K8S_CLUSTER
+          # container: ${CIRCLE_PROJECT_REPONAME}-consumer
+          # deployment: ${CIRCLE_PROJECT_REPONAME}-consumer
+          # namespace: ${K8S_NAMESPACE}
+          # image: ${REGISTRY_URL}/${GITHUB_URL}/${CIRCLE_PROJECT_REPONAME}-consumer
+          # tag: $CIRCLE_SHA1
+      # - run:
+         # name: Create consumer deployment if rollout fails
+         # command: envsubst < ./k8s-deployments/deployment-consumer.yml | kubectl apply -f -
+         # when: on_fail         
+
+
+  deploy-on-k8s-tower:
+    executor: gcp-gke/default
+    steps:
+      - checkout
+      - gcp-cli/install
+      - gcp-cli/initialize
+      - gcp-gke/install
+      - envsubst/install
+      - gcp-gke/rollout-image:
+          cluster: $K8S_CLUSTER
+          container: ${CIRCLE_PROJECT_REPONAME}
+          deployment: ${CIRCLE_PROJECT_REPONAME}
+          namespace: tower
+          image: ${REGISTRY_URL}/${GITHUB_URL}/${CIRCLE_PROJECT_REPONAME}
+          tag: $CIRCLE_SHA1
+      - run:
+         name: Create deployment if rollout fails
+         command: envsubst < ./k8s-deployments/deployment-tower.yml | kubectl apply -f -
+
+
+
+workflows:
+
+# --------------------------DEVELOPMENT deployment-------------------------------------
+
+  gcp_deploy_development:
+    jobs:
+      - install_and_initialize_cli:
+          context: development
+          filters:
+            branches:
+              only:
+                - development
+      - build-and-push-image:
+          context: development
+          filters:
+            branches:
+              only:
+                - development
+          requires:
+            - install_and_initialize_cli
+#---------------Uncomment this to deploy your consumer in kubernetes-------------------------
+      # - build-and-push-stream-image:
+          # context: development
+          # filters:
+            # branches:
+              # only:
+                # - development
+          # requires:
+            # - install_and_initialize_cli
+      - update_secrets_on_k8s:
+          context: development
+          filters:
+            branches:
+              only:
+                - development
+          requires:
+            - build-and-push-image
+      - pause_workflow:
+          filters:
+            branches:
+              only: 
+                - development 
+          requires:
+            - build-and-push-image
+            - update_secrets_on_k8s
+          type: approval
+      - deploy-on-k8s:
+          context: development
+          filters:
+            branches:
+              only:
+                - development
+          requires:
+            - pause_workflow
+
+      - deploy-on-k8s-tower:
+          context: development
+          requires:
+            - pause_workflow
+          filters:
+            branches:
+              only:
+                - development            
+ 
+# --------------------------PRODUCTION deployment------------------------------------- 
+  gcp_deploy_production:
+    jobs:
+      - install_and_initialize_cli:
+          context: production
+          filters:
+            branches:
+              only:
+                - master
+      - build-and-push-image:
+          context: production
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - install_and_initialize_cli
+#---------------Uncomment this to deploy your consumer in kubernetes-------------------------
+      # - build-and-push-stream-image:
+          # context: production
+          # filters:
+            # branches:
+              # only:
+                # - master
+          # requires:
+            # - install_and_initialize_cli
+      - update_secrets_on_k8s:
+          context: production
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - build-and-push-image
+      - pause_workflow:
+          filters:
+            branches:
+              only: 
+                - master 
+          requires:
+            - build-and-push-image
+            - update_secrets_on_k8s
+          type: approval
+      - deploy-on-k8s:
+          context: production
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - pause_workflow
+      - deploy-on-k8s-tower:
+          context: production
+          requires:
+            - pause_workflow
+          filters:
+            branches:
+              only:
+                - master            

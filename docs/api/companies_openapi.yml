@@ -1,0 +1,2532 @@
+openapi: 3.0.0
+info:
+  title: ms-companies
+  version: 1.0.0
+servers:
+  - url: https://ms-companies-dev.organization.com
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+tags:
+  - name: CompanyModel
+paths:
+  /v4/companies/size:
+    get:
+      tags:
+        - CompanyModel
+      summary: NumberOfCompanies
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '18'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                size: 221
+        '404':
+          description: NOT FOUND
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/html; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '232'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: >-
+                <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+                <title>404 Not Found</title>
+
+                <h1>Not Found</h1>
+
+                <p>The requested URL was not found on the server. If you entered
+                the URL manually please check your spelling and try again.</p>
+  /v4/company/:
+    post:
+      tags:
+        - CompanyModel
+      summary: Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: prueba
+                phone: 9
+                email: ''
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      responses:
+        '201':
+          description: CREATED
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '218'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                created: '2022-06-22 21:00:44.992127'
+                email: ''
+                is_active: true
+                modified: '2022-06-22 21:00:44.992145'
+                name: prueba
+                phone: '9'
+                uuid: 9b27941f-aad1-489c-b2e9-4a63ec7ad80a
+        '400':
+          description: BAD REQUEST
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '37'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create company - 400 BAD REQ - Empty Body request
+                  value:
+                    error: Company need a name
+                example-1:
+                  summary: Create - 400 BAD REQ - Body without name info to request
+                  value:
+                    error: Company need a name
+                example-2:
+                  summary: >-
+                    Create company - 400 BAD REQ - Body without phone info
+                    request
+                  value:
+                    error: Company need a phone
+                example-3:
+                  summary: >-
+                    Create company - 400 BAD REQ - Body without email info
+                    request
+                  value:
+                    error: Company need a email
+  /v4/company/96fc6bea-83e6-41c1-a6c4-f7e4b946316a:
+    get:
+      tags:
+        - CompanyModel
+      summary: ReadByUUID
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '222'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                created: '2022-03-02 21:25:37.912000'
+                email: ''
+                is_active: false
+                modified: '2022-06-22 06:47:14.378000'
+                name: Dovecreek
+                phone: '0'
+                uuid: 96fc6bea-83e6-41c1-a6c4-f7e4b946316a
+        '400':
+          description: BAD REQUEST
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '35'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: UUID is not exist
+        '405':
+          description: METHOD NOT ALLOWED
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/html; charset=utf-8
+            Allow:
+              schema:
+                type: string
+                example: OPTIONS, POST
+            Content-Length:
+              schema:
+                type: integer
+                example: '178'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+                <title>405 Method Not Allowed</title>
+                <h1>Method Not Allowed</h1>
+                <p>The method is not allowed for the requested URL.</p>
+    patch:
+      tags:
+        - CompanyModel
+      summary: UpdateByUUID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Dovecreek
+                phone: 8
+                email: ''
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '222'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                created: '2022-03-02 21:25:37.912000'
+                email: ''
+                is_active: false
+                modified: '2022-06-22 23:20:00.781574'
+                name: Dovecreek
+                phone: '8'
+                uuid: 96fc6bea-83e6-41c1-a6c4-f7e4b946316a
+        '400':
+          description: BAD REQUEST
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '23'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: phone
+        '405':
+          description: METHOD NOT ALLOWED
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/html; charset=utf-8
+            Allow:
+              schema:
+                type: string
+                example: OPTIONS, POST
+            Content-Length:
+              schema:
+                type: integer
+                example: '178'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+                <title>405 Method Not Allowed</title>
+                <h1>Method Not Allowed</h1>
+                <p>The method is not allowed for the requested URL.</p>
+  /v4/company/54070fcf-0efe-43cd-98d6-836ca0edfeda:
+    delete:
+      tags:
+        - CompanyModel
+      summary: DeleteByUUID
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '219'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                created: '2022-06-22 23:08:45.880402'
+                email: ''
+                is_active: true
+                modified: '2022-06-22 23:08:45.880417'
+                name: prueba2
+                phone: '7'
+                uuid: 54070fcf-0efe-43cd-98d6-836ca0edfeda
+        '400':
+          description: BAD REQUEST
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '35'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: UUID is not exist
+        '405':
+          description: METHOD NOT ALLOWED
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: text/html; charset=utf-8
+            Allow:
+              schema:
+                type: string
+                example: OPTIONS, POST
+            Content-Length:
+              schema:
+                type: integer
+                example: '178'
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |-
+                <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+                <title>405 Method Not Allowed</title>
+                <h1>Method Not Allowed</h1>
+                <p>The method is not allowed for the requested URL.</p>
+  /v4/company/cf959795-c7fd-45a8-9c1f-de23a8f2888d/active_deactive/:
+    patch:
+      tags:
+        - CompanyModel
+      summary: ActiveDeactiveByUUID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                is_active: 1
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '216'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                created: '2020-12-09 21:25:37.912000'
+                email: ''
+                is_active: true
+                modified: '2022-06-22 23:27:08.872186'
+                name: ABSA
+                phone: '0'
+                uuid: cf959795-c7fd-45a8-9c1f-de23a8f2888d
+        '400':
+          description: BAD REQUEST
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '27'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: is_active
+        undefined:
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: null
+  /v4/companies/:
+    get:
+      tags:
+        - CompanyModel
+      summary: ListAll
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '4'
+        - name: showing_range
+          in: query
+          schema:
+            type: integer
+          example: '30'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '7899'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                pages: 8
+                resource:
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Iqor
+                    phone: '0'
+                    uuid: 513937d9-1f86-4162-b5f8-c59a8c9f8c91
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: AMDA
+                    phone: '0'
+                    uuid: d63ecf24-083b-4d64-83ff-dc999a57d41e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Rone
+                    phone: '0'
+                    uuid: 3cc32a00-9bc1-48cb-929c-2cd657c1fd83
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: ExitusCredit
+                    phone: '0'
+                    uuid: aeaaf15b-7132-4daf-be02-0ed1cfe59048
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: NATUREGANIX
+                    phone: '0'
+                    uuid: f751d765-cdeb-47d3-95c3-177847ba0036
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: FortemCapital
+                    phone: '0'
+                    uuid: c185a12e-14fd-4a0b-bf80-4a92f18f1674
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: TexasRibs
+                    phone: '0'
+                    uuid: e88b4cad-7fa5-4236-9488-91bc0f80086c
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Selmec
+                    phone: '0'
+                    uuid: 1b60821b-caa4-43c7-b8ee-f4f953f2b3f2
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Pearson
+                    phone: '0'
+                    uuid: 0facba1d-4208-4add-b65b-8f36155a115d
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Cosco Shipping Lines Mexico
+                    phone: '0'
+                    uuid: 9345e9ec-813a-4388-ba39-096e258ea709
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Chg-Meridian
+                    phone: '0'
+                    uuid: 040f8878-6f71-4408-ab49-39ea6dce8b5f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Tecnológico de Monterrey CSF
+                    phone: '0'
+                    uuid: f244223d-a371-4be1-95ab-23867f1a1197
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Amazon
+                    phone: '0'
+                    uuid: 031af7f1-5730-4456-807a-1f10842a1358
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: SubZ3ro
+                    phone: '0'
+                    uuid: d2fb9ba3-798c-47c3-8a78-27a4baed3d4f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Comercializadora Bargo S.A de C.V
+                    phone: '0'
+                    uuid: 2298c20f-b971-45d6-846a-7ecdafa4b1e3
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Tiendas Neto
+                    phone: '0'
+                    uuid: 7e1a19a4-9979-4bb9-9646-8fc30e6b6b6b
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Grupo Cauda
+                    phone: '0'
+                    uuid: 27269ac3-1b3a-498b-858f-3c1f0859a390
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Toyota
+                    phone: '0'
+                    uuid: d3954287-eedb-405f-b663-12574a990a25
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Ottomotores
+                    phone: '0'
+                    uuid: c288b481-6d56-41e2-93f5-42b0d8aa4ca9
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Cielito Querido Cafe
+                    phone: '0'
+                    uuid: 5958fdc0-f591-4b68-8200-165b0d551296
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Alto Potencial
+                    phone: '0'
+                    uuid: fe0550b4-985a-440d-9369-be605265c15d
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: 3M
+                    phone: '0'
+                    uuid: 793b0eea-cd35-4197-bc75-5da9e7a33324
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Bonafont
+                    phone: '0'
+                    uuid: c909bb8d-d927-47c3-b630-12602026799c
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: P&G
+                    phone: '0'
+                    uuid: 65b1cdb4-1d72-44d8-a85e-a7637a872998
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Avery Dennison
+                    phone: '0'
+                    uuid: f72251b1-6755-40b1-b1a1-d9fa32c0a0ba
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Asofarma
+                    phone: '0'
+                    uuid: 7377cafd-46b1-46ec-9eec-3d740f00c2b1
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Médica Sur
+                    phone: '0'
+                    uuid: fa288177-96f4-419b-b20d-c475f90a6ee3
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: YEMA
+                    phone: '0'
+                    uuid: e1b1e4e7-b5c6-406b-9bbd-cacbbdd40ab7
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Canasta Rosa
+                    phone: '0'
+                    uuid: ec59e1d4-2482-4d21-8ecd-f41b7f451255
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Procesa MX (Atún Marina Azul)
+                    phone: '0'
+                    uuid: bfa1054f-65b8-4dc1-834e-3112c6e0d621
+        '400':
+          description: BAD REQUEST
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '41'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: ListAll - 400 BAD REQ - Out of range
+                  value:
+                    error: list index out of range
+                example-1:
+                  summary: ListAll - 400 BAD REQ - No Params
+                  value:
+                    error: >-
+                      int() argument must be a string, a bytes-like object or a
+                      real number, not 'NoneType'
+  /v4/companies/filter_by_name/Ama:
+    get:
+      tags:
+        - CompanyModel
+      summary: FilterByName
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: showing_range
+          in: query
+          schema:
+            type: integer
+          example: '30'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '8018'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                pages: 2
+                resource:
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Amazon
+                    phone: '0'
+                    uuid: 031af7f1-5730-4456-807a-1f10842a1358
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Amazon Contingencia (No funciona)
+                    phone: '0'
+                    uuid: 5c837a47-d8a8-437b-a4f3-adf430285759
+                  - created: '2021-01-04 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-04 21:25:37.912000'
+                    name: Amazon MTY1 - Guadalupe
+                    phone: '0'
+                    uuid: a5815b87-7da3-4d4e-9640-4faf9b1ed118
+                  - created: '2021-01-04 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-04 21:25:37.912000'
+                    name: Amazon MTY1 - Concordia
+                    phone: '0'
+                    uuid: 6fbfa3a2-364e-4621-85ca-8138fbc1bbff
+                  - created: '2021-01-14 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-14 21:25:37.912000'
+                    name: Amazon MTY1 - Pesqueria
+                    phone: '0'
+                    uuid: 2f07fc0d-b13e-4ee7-b56d-cd834f8d79b0
+                  - created: '2021-01-14 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-14 21:25:37.912000'
+                    name: Amazon MTY1 - Zuazua
+                    phone: '0'
+                    uuid: 3f33ac8b-465a-4cad-a2ac-ede82c49720a
+                  - created: '2021-01-14 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-14 21:25:37.912000'
+                    name: Amazon Apodaca - Zuazua/Agua fría
+                    phone: '0'
+                    uuid: 076bea7c-db95-4fa2-b22c-72b7c6f41128
+                  - created: '2021-01-14 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-14 21:25:37.912000'
+                    name: Amazon MTY1 - Zuazua/Agua fría
+                    phone: '0'
+                    uuid: 549af991-9a76-413f-8079-02876fe2dcd5
+                  - created: '2021-01-14 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-14 21:25:37.912000'
+                    name: Amazon MTY1 - Pesquería/Apodaca
+                    phone: '0'
+                    uuid: 84192d78-4957-44bf-878d-8e04f25a10d8
+                  - created: '2021-01-14 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-14 21:25:37.912000'
+                    name: Amazon MTY1 - Apodaca
+                    phone: '0'
+                    uuid: 7e0ec564-9ec0-4e46-88e6-46c4bddddf85
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DGD2
+                    phone: '0'
+                    uuid: 7db405c3-9d1c-4fb2-9258-78a12037439c
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DTL1
+                    phone: '0'
+                    uuid: 0991fb04-a43a-40a1-afea-ea507c5fba15
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DCL1
+                    phone: '0'
+                    uuid: 22fa9c04-7fe3-4f80-b32f-5028c8dc7531
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DMX2
+                    phone: '0'
+                    uuid: d8333ffb-e9c7-4876-9a0c-6d476047978a
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DGD1
+                    phone: '0'
+                    uuid: aa11f82f-88aa-4fd7-b330-5c795222a210
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DPB15
+                    phone: '0'
+                    uuid: 69f3d894-f5f3-434e-ae6a-c0e7c33a1d9d
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DQR1
+                    phone: '0'
+                    uuid: 28c71abe-c3d2-46b6-b332-c4d26b6b0ee6
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon MEX5
+                    phone: '0'
+                    uuid: 6113e7b7-f58d-4349-bd79-cc2d7a28f08a
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DMT1
+                    phone: '0'
+                    uuid: 02120c4f-f884-49cc-8a01-2e92611e537d
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DPB1
+                    phone: '0'
+                    uuid: 5a71c559-c0e2-4689-a2ea-dba838def9fc
+                  - created: '2021-06-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-06-02 21:25:37.912000'
+                    name: Amazon DHM1
+                    phone: '0'
+                    uuid: 5c05c939-ad50-4d09-8c55-31c1e6e10ad1
+                  - created: '2021-06-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-06-02 21:25:37.912000'
+                    name: Amazon DMT3
+                    phone: '0'
+                    uuid: 020eb478-5f25-4988-875e-5144c3bbab18
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Amazon DMX13
+                    phone: '0'
+                    uuid: 08a3e62e-5d39-4b6d-adb7-28549561df92
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Amazon DMX25
+                    phone: '0'
+                    uuid: f251afae-3050-4e7d-b500-343fad1afa90
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Amazon DVR1
+                    phone: '0'
+                    uuid: f3939fa1-f0dc-488c-8ac8-cdeb002fe6fe
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Amazon GDL1
+                    phone: '0'
+                    uuid: 75b428ad-170d-416b-9817-78b9a5cd6546
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Amazon DMX4
+                    phone: '0'
+                    uuid: ee2b12b8-d40f-4cae-9b89-a23adfeb3168
+                  - created: '2021-08-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-08-02 21:25:37.912000'
+                    name: Amazon DTJ1
+                    phone: '0'
+                    uuid: 5782988a-273b-4233-8eb9-72db6a571d62
+                  - created: '2021-08-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-08-02 21:25:37.912000'
+                    name: Amazon DSL1
+                    phone: '0'
+                    uuid: 0a320c93-98e8-4c7f-80a4-8cd1c2189d69
+                  - created: '2021-10-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-10-02 21:25:37.912000'
+                    name: Amazon DMX6
+                    phone: '0'
+                    uuid: 900f3d5c-19af-4313-9a8f-3b30df42b8ae
+        '400':
+          description: BAD REQUEST
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '103'
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: >-
+                    FilterByName Company - 400 BAD REQ - Without page parameter
+                    on request
+                  value:
+                    error: >-
+                      int() argument must be a string, a bytes-like object or a
+                      real number, not 'NoneType'
+                example-1:
+                  summary: FilterByName Company - 400 BAD REQ - Without parameters
+                  value:
+                    error: >-
+                      int() argument must be a string, a bytes-like object or a
+                      real number, not 'NoneType'
+  /v4/companies/sort_by_name/asc:
+    get:
+      tags:
+        - CompanyModel
+      summary: SortByNameASC
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: showing_range
+          in: query
+          schema:
+            type: integer
+          example: '30'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '7884'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                pages: 8
+                resource:
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: 3M
+                    phone: '0'
+                    uuid: 793b0eea-cd35-4197-bc75-5da9e7a33324
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: 99 Minutos
+                    phone: '0'
+                    uuid: b50d239b-44c6-48b9-be34-f3dd52cb9422
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-06-22 23:27:08.872186'
+                    name: ABSA
+                    phone: '0'
+                    uuid: cf959795-c7fd-45a8-9c1f-de23a8f2888d
+                  - created: '2022-02-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-02 21:25:37.912000'
+                    name: AGNP MTY
+                    phone: '0'
+                    uuid: 414de945-4783-410b-b77d-47aa36776726
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: AMDA
+                    phone: '0'
+                    uuid: d63ecf24-083b-4d64-83ff-dc999a57d41e
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Aliat university
+                    phone: '0'
+                    uuid: e652f4df-7a32-452f-a13b-156a0a8afe3f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Alloy
+                    phone: '0'
+                    uuid: ce7c341a-035d-4956-9b19-ddc0de7de49a
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Alto Potencial
+                    phone: '0'
+                    uuid: fe0550b4-985a-440d-9369-be605265c15d
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Alyrgo
+                    phone: '0'
+                    uuid: 18408172-fef2-41da-9694-722c5568a715
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Amazon
+                    phone: '0'
+                    uuid: 031af7f1-5730-4456-807a-1f10842a1358
+                  - created: '2021-01-14 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-01-14 21:25:37.912000'
+                    name: Amazon Apodaca - Zuazua/Agua fría
+                    phone: '0'
+                    uuid: 076bea7c-db95-4fa2-b22c-72b7c6f41128
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Amazon Contingencia (No funciona)
+                    phone: '0'
+                    uuid: 5c837a47-d8a8-437b-a4f3-adf430285759
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DCL1
+                    phone: '0'
+                    uuid: 22fa9c04-7fe3-4f80-b32f-5028c8dc7531
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DGD1
+                    phone: '0'
+                    uuid: aa11f82f-88aa-4fd7-b330-5c795222a210
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DGD2
+                    phone: '0'
+                    uuid: 7db405c3-9d1c-4fb2-9258-78a12037439c
+                  - created: '2021-06-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-06-02 21:25:37.912000'
+                    name: Amazon DHM1
+                    phone: '0'
+                    uuid: 5c05c939-ad50-4d09-8c55-31c1e6e10ad1
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DMT1
+                    phone: '0'
+                    uuid: 02120c4f-f884-49cc-8a01-2e92611e537d
+                  - created: '2021-06-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-06-02 21:25:37.912000'
+                    name: Amazon DMT3
+                    phone: '0'
+                    uuid: 020eb478-5f25-4988-875e-5144c3bbab18
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Amazon DMX13
+                    phone: '0'
+                    uuid: 08a3e62e-5d39-4b6d-adb7-28549561df92
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DMX2
+                    phone: '0'
+                    uuid: d8333ffb-e9c7-4876-9a0c-6d476047978a
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Amazon DMX25
+                    phone: '0'
+                    uuid: f251afae-3050-4e7d-b500-343fad1afa90
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Amazon DMX4
+                    phone: '0'
+                    uuid: ee2b12b8-d40f-4cae-9b89-a23adfeb3168
+                  - created: '2021-10-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-10-02 21:25:37.912000'
+                    name: Amazon DMX6
+                    phone: '0'
+                    uuid: 900f3d5c-19af-4313-9a8f-3b30df42b8ae
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DPB1
+                    phone: '0'
+                    uuid: 5a71c559-c0e2-4689-a2ea-dba838def9fc
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DPB15
+                    phone: '0'
+                    uuid: 69f3d894-f5f3-434e-ae6a-c0e7c33a1d9d
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DQR1
+                    phone: '0'
+                    uuid: 28c71abe-c3d2-46b6-b332-c4d26b6b0ee6
+                  - created: '2021-08-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-08-02 21:25:37.912000'
+                    name: Amazon DSL1
+                    phone: '0'
+                    uuid: 0a320c93-98e8-4c7f-80a4-8cd1c2189d69
+                  - created: '2021-08-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-08-02 21:25:37.912000'
+                    name: Amazon DTJ1
+                    phone: '0'
+                    uuid: 5782988a-273b-4233-8eb9-72db6a571d62
+                  - created: '2021-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-03-02 21:25:37.912000'
+                    name: Amazon DTL1
+                    phone: '0'
+                    uuid: 0991fb04-a43a-40a1-afea-ea507c5fba15
+                  - created: '2021-10-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-10-02 21:25:37.912000'
+                    name: Amazon DUU1
+                    phone: '0'
+                    uuid: 58ee4919-b30a-49b2-9712-24eeb5046159
+  /v4/companies/sort_by_name/desc:
+    get:
+      tags:
+        - CompanyModel
+      summary: SortByNameDESC
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: showing_range
+          in: query
+          schema:
+            type: integer
+          example: '30'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '7817'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                pages: 8
+                resource:
+                  - created: '2022-06-22 07:17:01.909946'
+                    email: ''
+                    is_active: true
+                    modified: '2022-06-22 07:17:01.909954'
+                    name: wtf
+                    phone: '9'
+                    uuid: d6550fdf-dde3-4d1b-a1aa-6051a4b4533d
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: organization_supervisores
+                    phone: '0'
+                    uuid: 6433b784-bfe8-401b-8782-290bc105204f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: organization
+                    phone: '0'
+                    uuid: fb4b74c1-1744-4023-8c4d-c160c343aac1
+                  - created: '2022-06-22 21:00:44.992127'
+                    email: ''
+                    is_active: true
+                    modified: '2022-06-22 21:00:44.992145'
+                    name: prueba
+                    phone: '9'
+                    uuid: 9b27941f-aad1-489c-b2e9-4a63ec7ad80a
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: picard
+                    phone: '0'
+                    uuid: a6f2670a-1d1f-4ce1-9ac3-fa1f8a2f161f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: YEMA
+                    phone: '0'
+                    uuid: e1b1e4e7-b5c6-406b-9bbd-cacbbdd40ab7
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Wolfmex
+                    phone: '0'
+                    uuid: 1ad46387-18b3-4c28-b352-4b4bc7cb57fc
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Wework_Modelo
+                    phone: '0'
+                    uuid: 7e3d1003-c9cc-41f4-aa24-ba47310ecc2e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: WACKER NEUSON
+                    phone: '0'
+                    uuid: 138d2878-455f-4781-831c-85d151bd2f36
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Voom
+                    phone: '0'
+                    uuid: bf864d2c-5d3f-4dd8-b14d-25ad299f68f8
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Volvo
+                    phone: '0'
+                    uuid: db8a46eb-3eae-49dd-949b-cdbdb91aef4e
+                  - created: '2022-02-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-09 21:25:37.912000'
+                    name: Vitasanitas
+                    phone: '0'
+                    uuid: f58d3853-26e2-4c5c-a836-510002a38539
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Vitalmex
+                    phone: '0'
+                    uuid: b5909509-43dd-4d8b-9527-6c457254040f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Viakon
+                    phone: '0'
+                    uuid: c48c66be-05a6-44c3-8d59-e637f746b623
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Vepormas
+                    phone: '0'
+                    uuid: 48464c3e-4295-48cc-8b29-f36d51c6f119
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: organization
+                    phone: '0'
+                    uuid: d3d56cbe-6487-4f32-bba2-d279bf9c454f
+                  - created: '2021-07-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-07-02 21:25:37.912000'
+                    name: Ubongo
+                    phone: '0'
+                    uuid: cc8ca442-14de-4cee-9466-aa3e7624d24c
+                  - created: '2022-02-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-02 21:25:37.912000'
+                    name: UVM
+                    phone: '0'
+                    uuid: 4ff153d5-a962-4896-904b-542438515686
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: UDEM
+                    phone: '0'
+                    uuid: f49f8eae-10d7-4a64-95da-5285727995ce
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Toyota
+                    phone: '0'
+                    uuid: d3954287-eedb-405f-b663-12574a990a25
+                  - created: '2021-08-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-08-02 21:25:37.912000'
+                    name: Tolucaespecial
+                    phone: '0'
+                    uuid: c0c9231a-e601-4442-b681-2364f425bdf9
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Tiendas Neto
+                    phone: '0'
+                    uuid: 7e1a19a4-9979-4bb9-9646-8fc30e6b6b6b
+                  - created: '2021-08-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-08-02 21:25:37.912000'
+                    name: The Wingate School
+                    phone: '0'
+                    uuid: f229893b-eb51-4019-b418-d147451367cb
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: TexasRibs
+                    phone: '0'
+                    uuid: e88b4cad-7fa5-4236-9488-91bc0f80086c
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Tecnológico de Monterrey CSF
+                    phone: '0'
+                    uuid: f244223d-a371-4be1-95ab-23867f1a1197
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: SubZ3ro
+                    phone: '0'
+                    uuid: d2fb9ba3-798c-47c3-8a78-27a4baed3d4f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Soluglob Ikon
+                    phone: '0'
+                    uuid: 2b5150ad-fd99-4342-91c2-b1bae8afcd9d
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Softexpert
+                    phone: '0'
+                    uuid: 44f94c6b-a2bc-46a8-8caa-bd891266c782
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Socialand
+                    phone: '0'
+                    uuid: cf71bf9e-20da-4131-a2b1-f02bbec7c23e
+                  - created: '2021-08-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2021-08-02 21:25:37.912000'
+                    name: SinCompania
+                    phone: '0'
+                    uuid: 0ed3a4d8-ac69-4fa9-a920-e4678edc271e
+  /v4/companies/sort_by_created/asc:
+    get:
+      tags:
+        - CompanyModel
+      summary: SortByCreatedASC
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: showing_range
+          in: query
+          schema:
+            type: integer
+          example: '30'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '7760'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                pages: 8
+                resource:
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Nutrisa
+                    phone: '0'
+                    uuid: 2a50ca25-328d-40d2-8192-8915cafa715f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: organization
+                    phone: '0'
+                    uuid: fb4b74c1-1744-4023-8c4d-c160c343aac1
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Intellego
+                    phone: '0'
+                    uuid: 5034fc6a-2b0f-4d95-a311-22973edf78b1
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: HSBC
+                    phone: '0'
+                    uuid: 557565ca-dc74-4d94-bf8f-67857b63e77d
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: UDEM
+                    phone: '0'
+                    uuid: f49f8eae-10d7-4a64-95da-5285727995ce
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: BE School
+                    phone: '0'
+                    uuid: abe50bad-1f06-4a8d-b9d1-02fc97031ffa
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: PALO-IT
+                    phone: '0'
+                    uuid: a010ddb9-6177-4f90-858b-4bf21dc43158
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: BOSCH
+                    phone: '0'
+                    uuid: b8ba4cca-4dfb-471e-8369-60cb183ca893
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: NFQ
+                    phone: '0'
+                    uuid: 7c1bb114-a171-4263-b054-53a88808cb4e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: PRESIDENTE
+                    phone: '0'
+                    uuid: 149d8ac7-25e9-4b04-a50e-220e0543dfbc
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Henko
+                    phone: '0'
+                    uuid: 75081c69-4b61-4da7-b1cc-97628b0cc221
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Alyrgo
+                    phone: '0'
+                    uuid: 18408172-fef2-41da-9694-722c5568a715
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Namschul
+                    phone: '0'
+                    uuid: 19bfbc63-f539-44b5-8bcf-966297df6984
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Volvo
+                    phone: '0'
+                    uuid: db8a46eb-3eae-49dd-949b-cdbdb91aef4e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Celanese
+                    phone: '0'
+                    uuid: 06ed3d86-1b7a-4188-9517-c70cf7f4983c
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Socialand
+                    phone: '0'
+                    uuid: cf71bf9e-20da-4131-a2b1-f02bbec7c23e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Vepormas
+                    phone: '0'
+                    uuid: 48464c3e-4295-48cc-8b29-f36d51c6f119
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Parks
+                    phone: '0'
+                    uuid: a9d2db19-bee7-4e06-a087-aa2bd08895cf
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: picard
+                    phone: '0'
+                    uuid: a6f2670a-1d1f-4ce1-9ac3-fa1f8a2f161f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Softexpert
+                    phone: '0'
+                    uuid: 44f94c6b-a2bc-46a8-8caa-bd891266c782
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Cattri
+                    phone: '0'
+                    uuid: ebb59a16-a10c-46e7-9a65-bea76073226c
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Beker
+                    phone: '0'
+                    uuid: fdf19378-d339-4b6f-8ff3-c24b94e946c3
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Nutrisa Plant
+                    phone: '0'
+                    uuid: 892f2b59-0229-4631-a6d9-77dc33a70306
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Exitus Capital
+                    phone: '0'
+                    uuid: d006d4f7-e99c-45a0-a069-34aff5af2e4b
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Gluo
+                    phone: '0'
+                    uuid: b25858d7-8845-4e68-aa7a-86ac6193bde9
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: organization_supervisores
+                    phone: '0'
+                    uuid: 6433b784-bfe8-401b-8782-290bc105204f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Voom
+                    phone: '0'
+                    uuid: bf864d2c-5d3f-4dd8-b14d-25ad299f68f8
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: ServiBenefits
+                    phone: '0'
+                    uuid: 74c77974-cd7f-44be-9a55-071d1aa6380e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Lagash
+                    phone: '0'
+                    uuid: 73e36231-d57d-427b-911f-a0075e708a70
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Inred
+                    phone: '0'
+                    uuid: ef95b125-f41b-4eeb-83e1-135b29273ad4
+  /v4/companies/sort_by_created/desc:
+    get:
+      tags:
+        - CompanyModel
+      summary: SortByCreatedDESC
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: showing_range
+          in: query
+          schema:
+            type: integer
+          example: '30'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '7895'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                pages: 8
+                resource:
+                  - created: '2022-06-22 21:00:44.992127'
+                    email: ''
+                    is_active: true
+                    modified: '2022-06-22 21:00:44.992145'
+                    name: prueba
+                    phone: '9'
+                    uuid: 9b27941f-aad1-489c-b2e9-4a63ec7ad80a
+                  - created: '2022-06-22 07:17:01.909946'
+                    email: ''
+                    is_active: true
+                    modified: '2022-06-22 07:17:01.909954'
+                    name: wtf
+                    phone: '9'
+                    uuid: d6550fdf-dde3-4d1b-a1aa-6051a4b4533d
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Aliat university
+                    phone: '0'
+                    uuid: e652f4df-7a32-452f-a13b-156a0a8afe3f
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Menzies Aviation
+                    phone: '0'
+                    uuid: f139f8b2-171b-49f2-a533-181f5cbb4251
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Quintana Ingenieros
+                    phone: '0'
+                    uuid: a00b24f8-edcb-4bdc-a3f5-4f9e6038826f
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Meli - Morelia
+                    phone: '0'
+                    uuid: cff4254f-e781-40b8-9a53-ccaa701ec82d
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: INRED
+                    phone: '0'
+                    uuid: 32556e91-ff35-493b-a4e9-8132f8167906
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Amazon MEX5 ROC
+                    phone: '0'
+                    uuid: 4b811fab-87c7-4cf7-ba4c-d420c2947bc8
+                  - created: '2022-04-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-04-02 21:25:37.912000'
+                    name: Huawei
+                    phone: '0'
+                    uuid: acf43b99-e919-4c3e-9077-c72bccd160db
+                  - created: '2022-04-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-04-02 21:25:37.912000'
+                    name: Evonik
+                    phone: '0'
+                    uuid: 91c0f806-d41b-4828-ad0a-bd3cd13f1110
+                  - created: '2022-04-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-04-02 21:25:37.912000'
+                    name: Femsa
+                    phone: '0'
+                    uuid: 5f0a3f9c-8f68-47ae-a0f9-6acbf62f4783
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-03-02 21:25:37.912000'
+                    name: CASKA
+                    phone: '0'
+                    uuid: 1e2dec41-8071-4018-8ccb-e4f6cf3f9ceb
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-03-02 21:25:37.912000'
+                    name: ESSITY
+                    phone: '0'
+                    uuid: 14c8bfa4-ab0b-451c-8a42-095ef120c84a
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-03-02 21:25:37.912000'
+                    name: SONY
+                    phone: '0'
+                    uuid: 44ec5968-df6d-461c-92d8-8764df828d3b
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-03-02 21:25:37.912000'
+                    name: Meli Queretaro
+                    phone: '0'
+                    uuid: 8eee43a4-a846-4ce0-ac89-d3119b6a14f8
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: false
+                    modified: '2022-06-22 23:20:00.781574'
+                    name: Dovecreek
+                    phone: '8'
+                    uuid: 96fc6bea-83e6-41c1-a6c4-f7e4b946316a
+                  - created: '2022-02-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-09 21:25:37.912000'
+                    name: CONCENTRIX
+                    phone: '0'
+                    uuid: 82ded6b6-03be-4172-a2d3-0dedb2233870
+                  - created: '2022-02-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-09 21:25:37.912000'
+                    name: Vitasanitas
+                    phone: '0'
+                    uuid: f58d3853-26e2-4c5c-a836-510002a38539
+                  - created: '2022-02-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-09 21:25:37.912000'
+                    name: Quiken MTY
+                    phone: '0'
+                    uuid: 5d4605c8-368f-414c-af5b-b8dd3dd0f546
+                  - created: '2022-02-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-02 21:25:37.912000'
+                    name: UVM
+                    phone: '0'
+                    uuid: 4ff153d5-a962-4896-904b-542438515686
+                  - created: '2022-02-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-02 21:25:37.912000'
+                    name: AGNP MTY
+                    phone: '0'
+                    uuid: 414de945-4783-410b-b77d-47aa36776726
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Comex - Chihuahua
+                    phone: '0'
+                    uuid: 0d0d1925-baa0-44ff-8591-e27386d48397
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Comex - Tijuana
+                    phone: '0'
+                    uuid: 2302ff6d-9340-479c-a76c-dca384b29950
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Comex - Minatitlán
+                    phone: '0'
+                    uuid: 532c17db-cd7b-4e3f-893d-7c86446e24dd
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Toluca
+                    phone: '0'
+                    uuid: 90a922e6-6b02-4a14-a687-0dacef0257a9
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Puebla
+                    phone: '0'
+                    uuid: f9dbf28e-0b7d-4f61-9daa-e493b185afe5
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Villahermosa
+                    phone: '0'
+                    uuid: d3952988-3d73-4bd4-8dcb-bfb3e0d00b0b
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Culiacán
+                    phone: '0'
+                    uuid: 3f43add2-377d-4785-9cf9-5759544d5e5d
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Guadalajara
+                    phone: '0'
+                    uuid: a15d084b-35bc-4044-9b57-77f4ac6ecaae
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Monterrey
+                    phone: '0'
+                    uuid: bd9034e4-8078-4b5b-895c-618d19e612ee
+  /v4/companies/sort_by_modified/asc:
+    get:
+      tags:
+        - CompanyModel
+      summary: SortByModifiedASC
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: showing_range
+          in: query
+          schema:
+            type: integer
+          example: '30'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '7760'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                pages: 8
+                resource:
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Nutrisa
+                    phone: '0'
+                    uuid: 2a50ca25-328d-40d2-8192-8915cafa715f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: organization
+                    phone: '0'
+                    uuid: fb4b74c1-1744-4023-8c4d-c160c343aac1
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Intellego
+                    phone: '0'
+                    uuid: 5034fc6a-2b0f-4d95-a311-22973edf78b1
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: HSBC
+                    phone: '0'
+                    uuid: 557565ca-dc74-4d94-bf8f-67857b63e77d
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: UDEM
+                    phone: '0'
+                    uuid: f49f8eae-10d7-4a64-95da-5285727995ce
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: BE School
+                    phone: '0'
+                    uuid: abe50bad-1f06-4a8d-b9d1-02fc97031ffa
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: PALO-IT
+                    phone: '0'
+                    uuid: a010ddb9-6177-4f90-858b-4bf21dc43158
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: BOSCH
+                    phone: '0'
+                    uuid: b8ba4cca-4dfb-471e-8369-60cb183ca893
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: NFQ
+                    phone: '0'
+                    uuid: 7c1bb114-a171-4263-b054-53a88808cb4e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: PRESIDENTE
+                    phone: '0'
+                    uuid: 149d8ac7-25e9-4b04-a50e-220e0543dfbc
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Henko
+                    phone: '0'
+                    uuid: 75081c69-4b61-4da7-b1cc-97628b0cc221
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Alyrgo
+                    phone: '0'
+                    uuid: 18408172-fef2-41da-9694-722c5568a715
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Namschul
+                    phone: '0'
+                    uuid: 19bfbc63-f539-44b5-8bcf-966297df6984
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Volvo
+                    phone: '0'
+                    uuid: db8a46eb-3eae-49dd-949b-cdbdb91aef4e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Celanese
+                    phone: '0'
+                    uuid: 06ed3d86-1b7a-4188-9517-c70cf7f4983c
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Socialand
+                    phone: '0'
+                    uuid: cf71bf9e-20da-4131-a2b1-f02bbec7c23e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Vepormas
+                    phone: '0'
+                    uuid: 48464c3e-4295-48cc-8b29-f36d51c6f119
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Parks
+                    phone: '0'
+                    uuid: a9d2db19-bee7-4e06-a087-aa2bd08895cf
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: picard
+                    phone: '0'
+                    uuid: a6f2670a-1d1f-4ce1-9ac3-fa1f8a2f161f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Softexpert
+                    phone: '0'
+                    uuid: 44f94c6b-a2bc-46a8-8caa-bd891266c782
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Cattri
+                    phone: '0'
+                    uuid: ebb59a16-a10c-46e7-9a65-bea76073226c
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Beker
+                    phone: '0'
+                    uuid: fdf19378-d339-4b6f-8ff3-c24b94e946c3
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Nutrisa Plant
+                    phone: '0'
+                    uuid: 892f2b59-0229-4631-a6d9-77dc33a70306
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Exitus Capital
+                    phone: '0'
+                    uuid: d006d4f7-e99c-45a0-a069-34aff5af2e4b
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Gluo
+                    phone: '0'
+                    uuid: b25858d7-8845-4e68-aa7a-86ac6193bde9
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: organization_supervisores
+                    phone: '0'
+                    uuid: 6433b784-bfe8-401b-8782-290bc105204f
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Voom
+                    phone: '0'
+                    uuid: bf864d2c-5d3f-4dd8-b14d-25ad299f68f8
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: ServiBenefits
+                    phone: '0'
+                    uuid: 74c77974-cd7f-44be-9a55-071d1aa6380e
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Lagash
+                    phone: '0'
+                    uuid: 73e36231-d57d-427b-911f-a0075e708a70
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2020-12-09 21:25:37.912000'
+                    name: Inred
+                    phone: '0'
+                    uuid: ef95b125-f41b-4eeb-83e1-135b29273ad4
+  /v4/companies/sort_by_modified/desc:
+    get:
+      tags:
+        - CompanyModel
+      summary: SortByModifiedDESC
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Bearer {{token}}
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: showing_range
+          in: query
+          schema:
+            type: integer
+          example: '30'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '7881'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                pages: 8
+                resource:
+                  - created: '2020-12-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-06-22 23:27:08.872186'
+                    name: ABSA
+                    phone: '0'
+                    uuid: cf959795-c7fd-45a8-9c1f-de23a8f2888d
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: false
+                    modified: '2022-06-22 23:20:00.781574'
+                    name: Dovecreek
+                    phone: '8'
+                    uuid: 96fc6bea-83e6-41c1-a6c4-f7e4b946316a
+                  - created: '2022-06-22 21:00:44.992127'
+                    email: ''
+                    is_active: true
+                    modified: '2022-06-22 21:00:44.992145'
+                    name: prueba
+                    phone: '9'
+                    uuid: 9b27941f-aad1-489c-b2e9-4a63ec7ad80a
+                  - created: '2022-06-22 07:17:01.909946'
+                    email: ''
+                    is_active: true
+                    modified: '2022-06-22 07:17:01.909954'
+                    name: wtf
+                    phone: '9'
+                    uuid: d6550fdf-dde3-4d1b-a1aa-6051a4b4533d
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Aliat university
+                    phone: '0'
+                    uuid: e652f4df-7a32-452f-a13b-156a0a8afe3f
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Menzies Aviation
+                    phone: '0'
+                    uuid: f139f8b2-171b-49f2-a533-181f5cbb4251
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Quintana Ingenieros
+                    phone: '0'
+                    uuid: a00b24f8-edcb-4bdc-a3f5-4f9e6038826f
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Meli - Morelia
+                    phone: '0'
+                    uuid: cff4254f-e781-40b8-9a53-ccaa701ec82d
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: INRED
+                    phone: '0'
+                    uuid: 32556e91-ff35-493b-a4e9-8132f8167906
+                  - created: '2022-05-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-05-02 21:25:37.912000'
+                    name: Amazon MEX5 ROC
+                    phone: '0'
+                    uuid: 4b811fab-87c7-4cf7-ba4c-d420c2947bc8
+                  - created: '2022-04-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-04-02 21:25:37.912000'
+                    name: Huawei
+                    phone: '0'
+                    uuid: acf43b99-e919-4c3e-9077-c72bccd160db
+                  - created: '2022-04-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-04-02 21:25:37.912000'
+                    name: Evonik
+                    phone: '0'
+                    uuid: 91c0f806-d41b-4828-ad0a-bd3cd13f1110
+                  - created: '2022-04-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-04-02 21:25:37.912000'
+                    name: Femsa
+                    phone: '0'
+                    uuid: 5f0a3f9c-8f68-47ae-a0f9-6acbf62f4783
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-03-02 21:25:37.912000'
+                    name: CASKA
+                    phone: '0'
+                    uuid: 1e2dec41-8071-4018-8ccb-e4f6cf3f9ceb
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-03-02 21:25:37.912000'
+                    name: ESSITY
+                    phone: '0'
+                    uuid: 14c8bfa4-ab0b-451c-8a42-095ef120c84a
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-03-02 21:25:37.912000'
+                    name: SONY
+                    phone: '0'
+                    uuid: 44ec5968-df6d-461c-92d8-8764df828d3b
+                  - created: '2022-03-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-03-02 21:25:37.912000'
+                    name: Meli Queretaro
+                    phone: '0'
+                    uuid: 8eee43a4-a846-4ce0-ac89-d3119b6a14f8
+                  - created: '2022-02-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-09 21:25:37.912000'
+                    name: CONCENTRIX
+                    phone: '0'
+                    uuid: 82ded6b6-03be-4172-a2d3-0dedb2233870
+                  - created: '2022-02-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-09 21:25:37.912000'
+                    name: Vitasanitas
+                    phone: '0'
+                    uuid: f58d3853-26e2-4c5c-a836-510002a38539
+                  - created: '2022-02-09 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-09 21:25:37.912000'
+                    name: Quiken MTY
+                    phone: '0'
+                    uuid: 5d4605c8-368f-414c-af5b-b8dd3dd0f546
+                  - created: '2022-02-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-02 21:25:37.912000'
+                    name: UVM
+                    phone: '0'
+                    uuid: 4ff153d5-a962-4896-904b-542438515686
+                  - created: '2022-02-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-02-02 21:25:37.912000'
+                    name: AGNP MTY
+                    phone: '0'
+                    uuid: 414de945-4783-410b-b77d-47aa36776726
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Comex - Chihuahua
+                    phone: '0'
+                    uuid: 0d0d1925-baa0-44ff-8591-e27386d48397
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Comex - Tijuana
+                    phone: '0'
+                    uuid: 2302ff6d-9340-479c-a76c-dca384b29950
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Comex - Minatitlán
+                    phone: '0'
+                    uuid: 532c17db-cd7b-4e3f-893d-7c86446e24dd
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Toluca
+                    phone: '0'
+                    uuid: 90a922e6-6b02-4a14-a687-0dacef0257a9
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Puebla
+                    phone: '0'
+                    uuid: f9dbf28e-0b7d-4f61-9daa-e493b185afe5
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Villahermosa
+                    phone: '0'
+                    uuid: d3952988-3d73-4bd4-8dcb-bfb3e0d00b0b
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Culiacán
+                    phone: '0'
+                    uuid: 3f43add2-377d-4785-9cf9-5759544d5e5d
+                  - created: '2022-01-02 21:25:37.912000'
+                    email: ''
+                    is_active: true
+                    modified: '2022-01-02 21:25:37.912000'
+                    name: Danone - Guadalajara
+                    phone: '0'
+                    uuid: a15d084b-35bc-4044-9b57-77f4ac6ecaae

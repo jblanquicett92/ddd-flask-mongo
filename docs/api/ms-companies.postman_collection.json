@@ -1,0 +1,1938 @@
+{
+	"info": {
+		"_postman_id": "f8e05116-9cc0-4581-a8b3-2629fa42c635",
+		"name": "ms-companies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17835086"
+	},
+	"item": [
+		{
+			"name": "CompanyModel",
+			"item": [
+				{
+					"name": "NumberOfCompanies",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/size",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								"size"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "4",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "NumberOfCompanies - 404  NOT FOUND",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/size/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										"size",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "4",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "232"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>"
+						},
+						{
+							"name": "NumberOfCompanies - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/size",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										"size"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "4",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "18"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"size\": 221\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"prueba\", \n    \"phone\":9,\n    \"email\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/v4/company/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"company",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create company - 200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"prueba\",\n    \"phone\":9,\n    \"email\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										""
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "218"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"created\": \"2022-06-22 21:00:44.992127\",\n    \"email\": \"\",\n    \"is_active\": true,\n    \"modified\": \"2022-06-22 21:00:44.992145\",\n    \"name\": \"prueba\",\n    \"phone\": \"9\",\n    \"uuid\": \"9b27941f-aad1-489c-b2e9-4a63ec7ad80a\"\n}"
+						},
+						{
+							"name": "Create company - 400 BAD REQ - Empty Body request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										""
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Company need a name\"\n}"
+						},
+						{
+							"name": "Create - 400 BAD REQ - Body without name info to request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \n    \"phone\":9,\n    \"email\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										""
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Company need a name\"\n}"
+						},
+						{
+							"name": "Create company - 400 BAD REQ - Body without phone info request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"prueba\"\n    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										""
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Company need a phone\"\n}"
+						},
+						{
+							"name": "Create company - 400 BAD REQ - Body without email info request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"prueba\", \n    \"phone\":9\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										""
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Company need a email\"\n}"
+						}
+					]
+				},
+				{
+					"name": "ReadByUUID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/company/96fc6bea-83e6-41c1-a6c4-f7e4b946316a",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"company",
+								"96fc6bea-83e6-41c1-a6c4-f7e4b946316a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ReadByUUID Company - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/96fc6bea-83e6-41c1-a6c4-f7e4b946316a",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										"96fc6bea-83e6-41c1-a6c4-f7e4b946316a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "222"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"created\": \"2022-03-02 21:25:37.912000\",\n    \"email\": \"\",\n    \"is_active\": false,\n    \"modified\": \"2022-06-22 06:47:14.378000\",\n    \"name\": \"Dovecreek\",\n    \"phone\": \"0\",\n    \"uuid\": \"96fc6bea-83e6-41c1-a6c4-f7e4b946316a\"\n}"
+						},
+						{
+							"name": "ReadByUUID Company - 400 BAD REQ - Company UUID not exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/96fc6bea-83e6-41c1-a6c4-f7e4b946316b",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										"96fc6bea-83e6-41c1-a6c4-f7e4b946316b"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"UUID is not exist\"\n}"
+						},
+						{
+							"name": "ReadByUUID Company - 405 METHOD NOT ALLOWED - Company UUID not set",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										""
+									]
+								}
+							},
+							"status": "METHOD NOT ALLOWED",
+							"code": 405,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>"
+						}
+					]
+				},
+				{
+					"name": "DeleteByUUID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/company/54070fcf-0efe-43cd-98d6-836ca0edfeda",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"company",
+								"54070fcf-0efe-43cd-98d6-836ca0edfeda"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DeleteByUUID Company - 400 BAD REQ - Company UUID not exists",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/12027ea6-fe8f-43c0-a983-dcb9e2ba562b",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										"12027ea6-fe8f-43c0-a983-dcb9e2ba562b"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"UUID is not exist\"\n}"
+						},
+						{
+							"name": "DeleteByUUID Company - 200 OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/54070fcf-0efe-43cd-98d6-836ca0edfeda",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										"54070fcf-0efe-43cd-98d6-836ca0edfeda"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "219"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"created\": \"2022-06-22 23:08:45.880402\",\n    \"email\": \"\",\n    \"is_active\": true,\n    \"modified\": \"2022-06-22 23:08:45.880417\",\n    \"name\": \"prueba2\",\n    \"phone\": \"7\",\n    \"uuid\": \"54070fcf-0efe-43cd-98d6-836ca0edfeda\"\n}"
+						},
+						{
+							"name": "DeleteByUUID Company - 405 METHOD NOT ALLOWED - Without companyh UUID resource on endpoint",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/company/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"company",
+										""
+									]
+								}
+							},
+							"status": "METHOD NOT ALLOWED",
+							"code": 405,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>"
+						}
+					]
+				},
+				{
+					"name": "UpdateByUUID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Dovecreek\",\n    \"phone\": 8,\n    \"email\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/v4/company/96fc6bea-83e6-41c1-a6c4-f7e4b946316a",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"company",
+								"96fc6bea-83e6-41c1-a6c4-f7e4b946316a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "UpdateByUUID Company - 200 OK",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Dovecreek\",\n    \"phone\": 8,\n    \"email\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/v4/company/96fc6bea-83e6-41c1-a6c4-f7e4b946316a",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"company",
+										"96fc6bea-83e6-41c1-a6c4-f7e4b946316a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "222"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"created\": \"2022-03-02 21:25:37.912000\",\n    \"email\": \"\",\n    \"is_active\": false,\n    \"modified\": \"2022-06-22 23:20:00.781574\",\n    \"name\": \"Dovecreek\",\n    \"phone\": \"8\",\n    \"uuid\": \"96fc6bea-83e6-41c1-a6c4-f7e4b946316a\"\n}"
+						},
+						{
+							"name": "UpdateByUUID Company - 400 BAD REQ - Without phone attribute to patch data of company",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Dovecreek\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/v4/company/96fc6bea-83e6-41c1-a6c4-f7e4b946316a",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"company",
+										"96fc6bea-83e6-41c1-a6c4-f7e4b946316a"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"phone\"\n}"
+						},
+						{
+							"name": "UpdateByUUID Company - 405 METHOD NOT ALLOWED - Company UUID parameter on endpoint request not exists",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Dovecreek\",\n    \"phone\": 8,\n    \"email\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/v4/company/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"company",
+										""
+									]
+								}
+							},
+							"status": "METHOD NOT ALLOWED",
+							"code": 405,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>405 Method Not Allowed</title>\n<h1>Method Not Allowed</h1>\n<p>The method is not allowed for the requested URL.</p>"
+						}
+					]
+				},
+				{
+					"name": "ActiveDeactiveByUUID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_active\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/v4/company/cf959795-c7fd-45a8-9c1f-de23a8f2888d/active_deactive/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"company",
+								"cf959795-c7fd-45a8-9c1f-de23a8f2888d",
+								"active_deactive",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ActiveDeactiveByUUID Company - 200 OK",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"is_active\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/v4/company/cf959795-c7fd-45a8-9c1f-de23a8f2888d/active_deactive/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"company",
+										"cf959795-c7fd-45a8-9c1f-de23a8f2888d",
+										"active_deactive",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "216"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"created\": \"2020-12-09 21:25:37.912000\",\n    \"email\": \"\",\n    \"is_active\": true,\n    \"modified\": \"2022-06-22 23:27:08.872186\",\n    \"name\": \"ABSA\",\n    \"phone\": \"0\",\n    \"uuid\": \"cf959795-c7fd-45a8-9c1f-de23a8f2888d\"\n}"
+						},
+						{
+							"name": "ActiveDeactiveByUUID Company - Dont Response - Body not exists",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{local_url}}/v4/company/cf959795-c7fd-45a8-9c1f-de23a8f2888d/active_deactive/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"company",
+										"cf959795-c7fd-45a8-9c1f-de23a8f2888d",
+										"active_deactive",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": [],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "ActiveDeactiveByUUID Company - 400 BAD REQ - Without Body argument",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}/v4/company/cf959795-c7fd-45a8-9c1f-de23a8f2888d/active_deactive/",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"company",
+										"cf959795-c7fd-45a8-9c1f-de23a8f2888d",
+										"active_deactive",
+										""
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"is_active\"\n}"
+						}
+					]
+				},
+				{
+					"name": "ListAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/?page=4&showing_range=30",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "4"
+								},
+								{
+									"key": "showing_range",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ListAll - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/?page=2&showing_range=30",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7899"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pages\": 8,\n    \"resource\": [\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Iqor\",\n            \"phone\": \"0\",\n            \"uuid\": \"513937d9-1f86-4162-b5f8-c59a8c9f8c91\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"AMDA\",\n            \"phone\": \"0\",\n            \"uuid\": \"d63ecf24-083b-4d64-83ff-dc999a57d41e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Rone\",\n            \"phone\": \"0\",\n            \"uuid\": \"3cc32a00-9bc1-48cb-929c-2cd657c1fd83\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"ExitusCredit\",\n            \"phone\": \"0\",\n            \"uuid\": \"aeaaf15b-7132-4daf-be02-0ed1cfe59048\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"NATUREGANIX\",\n            \"phone\": \"0\",\n            \"uuid\": \"f751d765-cdeb-47d3-95c3-177847ba0036\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"FortemCapital\",\n            \"phone\": \"0\",\n            \"uuid\": \"c185a12e-14fd-4a0b-bf80-4a92f18f1674\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"TexasRibs\",\n            \"phone\": \"0\",\n            \"uuid\": \"e88b4cad-7fa5-4236-9488-91bc0f80086c\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Selmec\",\n            \"phone\": \"0\",\n            \"uuid\": \"1b60821b-caa4-43c7-b8ee-f4f953f2b3f2\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Pearson\",\n            \"phone\": \"0\",\n            \"uuid\": \"0facba1d-4208-4add-b65b-8f36155a115d\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Cosco Shipping Lines Mexico\",\n            \"phone\": \"0\",\n            \"uuid\": \"9345e9ec-813a-4388-ba39-096e258ea709\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Chg-Meridian\",\n            \"phone\": \"0\",\n            \"uuid\": \"040f8878-6f71-4408-ab49-39ea6dce8b5f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Tecnológico de Monterrey CSF\",\n            \"phone\": \"0\",\n            \"uuid\": \"f244223d-a371-4be1-95ab-23867f1a1197\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Amazon\",\n            \"phone\": \"0\",\n            \"uuid\": \"031af7f1-5730-4456-807a-1f10842a1358\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"SubZ3ro\",\n            \"phone\": \"0\",\n            \"uuid\": \"d2fb9ba3-798c-47c3-8a78-27a4baed3d4f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Comercializadora Bargo S.A de C.V\",\n            \"phone\": \"0\",\n            \"uuid\": \"2298c20f-b971-45d6-846a-7ecdafa4b1e3\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Tiendas Neto\",\n            \"phone\": \"0\",\n            \"uuid\": \"7e1a19a4-9979-4bb9-9646-8fc30e6b6b6b\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Grupo Cauda\",\n            \"phone\": \"0\",\n            \"uuid\": \"27269ac3-1b3a-498b-858f-3c1f0859a390\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Toyota\",\n            \"phone\": \"0\",\n            \"uuid\": \"d3954287-eedb-405f-b663-12574a990a25\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Ottomotores\",\n            \"phone\": \"0\",\n            \"uuid\": \"c288b481-6d56-41e2-93f5-42b0d8aa4ca9\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Cielito Querido Cafe\",\n            \"phone\": \"0\",\n            \"uuid\": \"5958fdc0-f591-4b68-8200-165b0d551296\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Alto Potencial\",\n            \"phone\": \"0\",\n            \"uuid\": \"fe0550b4-985a-440d-9369-be605265c15d\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"3M\",\n            \"phone\": \"0\",\n            \"uuid\": \"793b0eea-cd35-4197-bc75-5da9e7a33324\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Bonafont\",\n            \"phone\": \"0\",\n            \"uuid\": \"c909bb8d-d927-47c3-b630-12602026799c\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"P&G\",\n            \"phone\": \"0\",\n            \"uuid\": \"65b1cdb4-1d72-44d8-a85e-a7637a872998\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Avery Dennison\",\n            \"phone\": \"0\",\n            \"uuid\": \"f72251b1-6755-40b1-b1a1-d9fa32c0a0ba\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Asofarma\",\n            \"phone\": \"0\",\n            \"uuid\": \"7377cafd-46b1-46ec-9eec-3d740f00c2b1\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Médica Sur\",\n            \"phone\": \"0\",\n            \"uuid\": \"fa288177-96f4-419b-b20d-c475f90a6ee3\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"YEMA\",\n            \"phone\": \"0\",\n            \"uuid\": \"e1b1e4e7-b5c6-406b-9bbd-cacbbdd40ab7\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Canasta Rosa\",\n            \"phone\": \"0\",\n            \"uuid\": \"ec59e1d4-2482-4d21-8ecd-f41b7f451255\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Procesa MX (Atún Marina Azul)\",\n            \"phone\": \"0\",\n            \"uuid\": \"bfa1054f-65b8-4dc1-834e-3112c6e0d621\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "ListAll - 400 BAD REQ - Out of range",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/?page=31&showing_range=30",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "31"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"list index out of range\"\n}"
+						},
+						{
+							"name": "ListAll - 400 BAD REQ - No Params",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "31",
+											"disabled": true
+										},
+										{
+											"key": "showing_range",
+											"value": "30",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"int() argument must be a string, a bytes-like object or a real number, not 'NoneType'\"\n}"
+						}
+					]
+				},
+				{
+					"name": "FilterByName",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/filter_by_name/Ama?page=1&showing_range=30",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								"filter_by_name",
+								"Ama"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "showing_range",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "FilterByName Company - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/filter_by_name/Ama?page=1&showing_range=30",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										"filter_by_name",
+										"Ama"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "8018"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pages\": 2,\n    \"resource\": [\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Amazon\",\n            \"phone\": \"0\",\n            \"uuid\": \"031af7f1-5730-4456-807a-1f10842a1358\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Amazon Contingencia (No funciona)\",\n            \"phone\": \"0\",\n            \"uuid\": \"5c837a47-d8a8-437b-a4f3-adf430285759\"\n        },\n        {\n            \"created\": \"2021-01-04 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-04 21:25:37.912000\",\n            \"name\": \"Amazon MTY1 - Guadalupe\",\n            \"phone\": \"0\",\n            \"uuid\": \"a5815b87-7da3-4d4e-9640-4faf9b1ed118\"\n        },\n        {\n            \"created\": \"2021-01-04 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-04 21:25:37.912000\",\n            \"name\": \"Amazon MTY1 - Concordia\",\n            \"phone\": \"0\",\n            \"uuid\": \"6fbfa3a2-364e-4621-85ca-8138fbc1bbff\"\n        },\n        {\n            \"created\": \"2021-01-14 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-14 21:25:37.912000\",\n            \"name\": \"Amazon MTY1 - Pesqueria\",\n            \"phone\": \"0\",\n            \"uuid\": \"2f07fc0d-b13e-4ee7-b56d-cd834f8d79b0\"\n        },\n        {\n            \"created\": \"2021-01-14 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-14 21:25:37.912000\",\n            \"name\": \"Amazon MTY1 - Zuazua\",\n            \"phone\": \"0\",\n            \"uuid\": \"3f33ac8b-465a-4cad-a2ac-ede82c49720a\"\n        },\n        {\n            \"created\": \"2021-01-14 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-14 21:25:37.912000\",\n            \"name\": \"Amazon Apodaca - Zuazua/Agua fría\",\n            \"phone\": \"0\",\n            \"uuid\": \"076bea7c-db95-4fa2-b22c-72b7c6f41128\"\n        },\n        {\n            \"created\": \"2021-01-14 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-14 21:25:37.912000\",\n            \"name\": \"Amazon MTY1 - Zuazua/Agua fría\",\n            \"phone\": \"0\",\n            \"uuid\": \"549af991-9a76-413f-8079-02876fe2dcd5\"\n        },\n        {\n            \"created\": \"2021-01-14 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-14 21:25:37.912000\",\n            \"name\": \"Amazon MTY1 - Pesquería/Apodaca\",\n            \"phone\": \"0\",\n            \"uuid\": \"84192d78-4957-44bf-878d-8e04f25a10d8\"\n        },\n        {\n            \"created\": \"2021-01-14 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-14 21:25:37.912000\",\n            \"name\": \"Amazon MTY1 - Apodaca\",\n            \"phone\": \"0\",\n            \"uuid\": \"7e0ec564-9ec0-4e46-88e6-46c4bddddf85\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DGD2\",\n            \"phone\": \"0\",\n            \"uuid\": \"7db405c3-9d1c-4fb2-9258-78a12037439c\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DTL1\",\n            \"phone\": \"0\",\n            \"uuid\": \"0991fb04-a43a-40a1-afea-ea507c5fba15\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DCL1\",\n            \"phone\": \"0\",\n            \"uuid\": \"22fa9c04-7fe3-4f80-b32f-5028c8dc7531\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX2\",\n            \"phone\": \"0\",\n            \"uuid\": \"d8333ffb-e9c7-4876-9a0c-6d476047978a\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DGD1\",\n            \"phone\": \"0\",\n            \"uuid\": \"aa11f82f-88aa-4fd7-b330-5c795222a210\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DPB15\",\n            \"phone\": \"0\",\n            \"uuid\": \"69f3d894-f5f3-434e-ae6a-c0e7c33a1d9d\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DQR1\",\n            \"phone\": \"0\",\n            \"uuid\": \"28c71abe-c3d2-46b6-b332-c4d26b6b0ee6\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon MEX5\",\n            \"phone\": \"0\",\n            \"uuid\": \"6113e7b7-f58d-4349-bd79-cc2d7a28f08a\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DMT1\",\n            \"phone\": \"0\",\n            \"uuid\": \"02120c4f-f884-49cc-8a01-2e92611e537d\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DPB1\",\n            \"phone\": \"0\",\n            \"uuid\": \"5a71c559-c0e2-4689-a2ea-dba838def9fc\"\n        },\n        {\n            \"created\": \"2021-06-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-06-02 21:25:37.912000\",\n            \"name\": \"Amazon DHM1\",\n            \"phone\": \"0\",\n            \"uuid\": \"5c05c939-ad50-4d09-8c55-31c1e6e10ad1\"\n        },\n        {\n            \"created\": \"2021-06-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-06-02 21:25:37.912000\",\n            \"name\": \"Amazon DMT3\",\n            \"phone\": \"0\",\n            \"uuid\": \"020eb478-5f25-4988-875e-5144c3bbab18\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX13\",\n            \"phone\": \"0\",\n            \"uuid\": \"08a3e62e-5d39-4b6d-adb7-28549561df92\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX25\",\n            \"phone\": \"0\",\n            \"uuid\": \"f251afae-3050-4e7d-b500-343fad1afa90\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Amazon DVR1\",\n            \"phone\": \"0\",\n            \"uuid\": \"f3939fa1-f0dc-488c-8ac8-cdeb002fe6fe\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Amazon GDL1\",\n            \"phone\": \"0\",\n            \"uuid\": \"75b428ad-170d-416b-9817-78b9a5cd6546\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX4\",\n            \"phone\": \"0\",\n            \"uuid\": \"ee2b12b8-d40f-4cae-9b89-a23adfeb3168\"\n        },\n        {\n            \"created\": \"2021-08-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-08-02 21:25:37.912000\",\n            \"name\": \"Amazon DTJ1\",\n            \"phone\": \"0\",\n            \"uuid\": \"5782988a-273b-4233-8eb9-72db6a571d62\"\n        },\n        {\n            \"created\": \"2021-08-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-08-02 21:25:37.912000\",\n            \"name\": \"Amazon DSL1\",\n            \"phone\": \"0\",\n            \"uuid\": \"0a320c93-98e8-4c7f-80a4-8cd1c2189d69\"\n        },\n        {\n            \"created\": \"2021-10-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-10-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX6\",\n            \"phone\": \"0\",\n            \"uuid\": \"900f3d5c-19af-4313-9a8f-3b30df42b8ae\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "FilterByName Company - 400 BAD REQ - Without page parameter on request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/filter_by_name/Ama?showing_range=30",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										"filter_by_name",
+										"Ama"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"int() argument must be a string, a bytes-like object or a real number, not 'NoneType'\"\n}"
+						},
+						{
+							"name": "FilterByName Company - 400 BAD REQ - Without parameters",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/filter_by_name/Ama",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										"filter_by_name",
+										"Ama"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "showing_range",
+											"value": "30",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"int() argument must be a string, a bytes-like object or a real number, not 'NoneType'\"\n}"
+						}
+					]
+				},
+				{
+					"name": "SortByNameASC",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/sort_by_name/asc?page=1&showing_range=30",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								"sort_by_name",
+								"asc"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "showing_range",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SortByNameASC Companies - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/sort_by_name/asc?page=1&showing_range=30",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										"sort_by_name",
+										"asc"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7884"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pages\": 8,\n    \"resource\": [\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"3M\",\n            \"phone\": \"0\",\n            \"uuid\": \"793b0eea-cd35-4197-bc75-5da9e7a33324\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"99 Minutos\",\n            \"phone\": \"0\",\n            \"uuid\": \"b50d239b-44c6-48b9-be34-f3dd52cb9422\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-06-22 23:27:08.872186\",\n            \"name\": \"ABSA\",\n            \"phone\": \"0\",\n            \"uuid\": \"cf959795-c7fd-45a8-9c1f-de23a8f2888d\"\n        },\n        {\n            \"created\": \"2022-02-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-02 21:25:37.912000\",\n            \"name\": \"AGNP MTY\",\n            \"phone\": \"0\",\n            \"uuid\": \"414de945-4783-410b-b77d-47aa36776726\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"AMDA\",\n            \"phone\": \"0\",\n            \"uuid\": \"d63ecf24-083b-4d64-83ff-dc999a57d41e\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Aliat university\",\n            \"phone\": \"0\",\n            \"uuid\": \"e652f4df-7a32-452f-a13b-156a0a8afe3f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Alloy\",\n            \"phone\": \"0\",\n            \"uuid\": \"ce7c341a-035d-4956-9b19-ddc0de7de49a\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Alto Potencial\",\n            \"phone\": \"0\",\n            \"uuid\": \"fe0550b4-985a-440d-9369-be605265c15d\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Alyrgo\",\n            \"phone\": \"0\",\n            \"uuid\": \"18408172-fef2-41da-9694-722c5568a715\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Amazon\",\n            \"phone\": \"0\",\n            \"uuid\": \"031af7f1-5730-4456-807a-1f10842a1358\"\n        },\n        {\n            \"created\": \"2021-01-14 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-01-14 21:25:37.912000\",\n            \"name\": \"Amazon Apodaca - Zuazua/Agua fría\",\n            \"phone\": \"0\",\n            \"uuid\": \"076bea7c-db95-4fa2-b22c-72b7c6f41128\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Amazon Contingencia (No funciona)\",\n            \"phone\": \"0\",\n            \"uuid\": \"5c837a47-d8a8-437b-a4f3-adf430285759\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DCL1\",\n            \"phone\": \"0\",\n            \"uuid\": \"22fa9c04-7fe3-4f80-b32f-5028c8dc7531\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DGD1\",\n            \"phone\": \"0\",\n            \"uuid\": \"aa11f82f-88aa-4fd7-b330-5c795222a210\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DGD2\",\n            \"phone\": \"0\",\n            \"uuid\": \"7db405c3-9d1c-4fb2-9258-78a12037439c\"\n        },\n        {\n            \"created\": \"2021-06-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-06-02 21:25:37.912000\",\n            \"name\": \"Amazon DHM1\",\n            \"phone\": \"0\",\n            \"uuid\": \"5c05c939-ad50-4d09-8c55-31c1e6e10ad1\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DMT1\",\n            \"phone\": \"0\",\n            \"uuid\": \"02120c4f-f884-49cc-8a01-2e92611e537d\"\n        },\n        {\n            \"created\": \"2021-06-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-06-02 21:25:37.912000\",\n            \"name\": \"Amazon DMT3\",\n            \"phone\": \"0\",\n            \"uuid\": \"020eb478-5f25-4988-875e-5144c3bbab18\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX13\",\n            \"phone\": \"0\",\n            \"uuid\": \"08a3e62e-5d39-4b6d-adb7-28549561df92\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX2\",\n            \"phone\": \"0\",\n            \"uuid\": \"d8333ffb-e9c7-4876-9a0c-6d476047978a\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX25\",\n            \"phone\": \"0\",\n            \"uuid\": \"f251afae-3050-4e7d-b500-343fad1afa90\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX4\",\n            \"phone\": \"0\",\n            \"uuid\": \"ee2b12b8-d40f-4cae-9b89-a23adfeb3168\"\n        },\n        {\n            \"created\": \"2021-10-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-10-02 21:25:37.912000\",\n            \"name\": \"Amazon DMX6\",\n            \"phone\": \"0\",\n            \"uuid\": \"900f3d5c-19af-4313-9a8f-3b30df42b8ae\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DPB1\",\n            \"phone\": \"0\",\n            \"uuid\": \"5a71c559-c0e2-4689-a2ea-dba838def9fc\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DPB15\",\n            \"phone\": \"0\",\n            \"uuid\": \"69f3d894-f5f3-434e-ae6a-c0e7c33a1d9d\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DQR1\",\n            \"phone\": \"0\",\n            \"uuid\": \"28c71abe-c3d2-46b6-b332-c4d26b6b0ee6\"\n        },\n        {\n            \"created\": \"2021-08-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-08-02 21:25:37.912000\",\n            \"name\": \"Amazon DSL1\",\n            \"phone\": \"0\",\n            \"uuid\": \"0a320c93-98e8-4c7f-80a4-8cd1c2189d69\"\n        },\n        {\n            \"created\": \"2021-08-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-08-02 21:25:37.912000\",\n            \"name\": \"Amazon DTJ1\",\n            \"phone\": \"0\",\n            \"uuid\": \"5782988a-273b-4233-8eb9-72db6a571d62\"\n        },\n        {\n            \"created\": \"2021-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-03-02 21:25:37.912000\",\n            \"name\": \"Amazon DTL1\",\n            \"phone\": \"0\",\n            \"uuid\": \"0991fb04-a43a-40a1-afea-ea507c5fba15\"\n        },\n        {\n            \"created\": \"2021-10-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-10-02 21:25:37.912000\",\n            \"name\": \"Amazon DUU1\",\n            \"phone\": \"0\",\n            \"uuid\": \"58ee4919-b30a-49b2-9712-24eeb5046159\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "SortByNameDESC",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/sort_by_name/desc?page=1&showing_range=30",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								"sort_by_name",
+								"desc"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "showing_range",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SortByNameDESC Companies - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/sort_by_name/desc?page=1&showing_range=30",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										"sort_by_name",
+										"desc"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7817"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pages\": 8,\n    \"resource\": [\n        {\n            \"created\": \"2022-06-22 07:17:01.909946\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-06-22 07:17:01.909954\",\n            \"name\": \"wtf\",\n            \"phone\": \"9\",\n            \"uuid\": \"d6550fdf-dde3-4d1b-a1aa-6051a4b4533d\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"organization_supervisores\",\n            \"phone\": \"0\",\n            \"uuid\": \"6433b784-bfe8-401b-8782-290bc105204f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"organization\",\n            \"phone\": \"0\",\n            \"uuid\": \"fb4b74c1-1744-4023-8c4d-c160c343aac1\"\n        },\n        {\n            \"created\": \"2022-06-22 21:00:44.992127\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-06-22 21:00:44.992145\",\n            \"name\": \"prueba\",\n            \"phone\": \"9\",\n            \"uuid\": \"9b27941f-aad1-489c-b2e9-4a63ec7ad80a\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"picard\",\n            \"phone\": \"0\",\n            \"uuid\": \"a6f2670a-1d1f-4ce1-9ac3-fa1f8a2f161f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"YEMA\",\n            \"phone\": \"0\",\n            \"uuid\": \"e1b1e4e7-b5c6-406b-9bbd-cacbbdd40ab7\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Wolfmex\",\n            \"phone\": \"0\",\n            \"uuid\": \"1ad46387-18b3-4c28-b352-4b4bc7cb57fc\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Wework_Modelo\",\n            \"phone\": \"0\",\n            \"uuid\": \"7e3d1003-c9cc-41f4-aa24-ba47310ecc2e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"WACKER NEUSON\",\n            \"phone\": \"0\",\n            \"uuid\": \"138d2878-455f-4781-831c-85d151bd2f36\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Voom\",\n            \"phone\": \"0\",\n            \"uuid\": \"bf864d2c-5d3f-4dd8-b14d-25ad299f68f8\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Volvo\",\n            \"phone\": \"0\",\n            \"uuid\": \"db8a46eb-3eae-49dd-949b-cdbdb91aef4e\"\n        },\n        {\n            \"created\": \"2022-02-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-09 21:25:37.912000\",\n            \"name\": \"Vitasanitas\",\n            \"phone\": \"0\",\n            \"uuid\": \"f58d3853-26e2-4c5c-a836-510002a38539\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Vitalmex\",\n            \"phone\": \"0\",\n            \"uuid\": \"b5909509-43dd-4d8b-9527-6c457254040f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Viakon\",\n            \"phone\": \"0\",\n            \"uuid\": \"c48c66be-05a6-44c3-8d59-e637f746b623\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Vepormas\",\n            \"phone\": \"0\",\n            \"uuid\": \"48464c3e-4295-48cc-8b29-f36d51c6f119\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"organization\",\n            \"phone\": \"0\",\n            \"uuid\": \"d3d56cbe-6487-4f32-bba2-d279bf9c454f\"\n        },\n        {\n            \"created\": \"2021-07-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-07-02 21:25:37.912000\",\n            \"name\": \"Ubongo\",\n            \"phone\": \"0\",\n            \"uuid\": \"cc8ca442-14de-4cee-9466-aa3e7624d24c\"\n        },\n        {\n            \"created\": \"2022-02-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-02 21:25:37.912000\",\n            \"name\": \"UVM\",\n            \"phone\": \"0\",\n            \"uuid\": \"4ff153d5-a962-4896-904b-542438515686\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"UDEM\",\n            \"phone\": \"0\",\n            \"uuid\": \"f49f8eae-10d7-4a64-95da-5285727995ce\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Toyota\",\n            \"phone\": \"0\",\n            \"uuid\": \"d3954287-eedb-405f-b663-12574a990a25\"\n        },\n        {\n            \"created\": \"2021-08-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-08-02 21:25:37.912000\",\n            \"name\": \"Tolucaespecial\",\n            \"phone\": \"0\",\n            \"uuid\": \"c0c9231a-e601-4442-b681-2364f425bdf9\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Tiendas Neto\",\n            \"phone\": \"0\",\n            \"uuid\": \"7e1a19a4-9979-4bb9-9646-8fc30e6b6b6b\"\n        },\n        {\n            \"created\": \"2021-08-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-08-02 21:25:37.912000\",\n            \"name\": \"The Wingate School\",\n            \"phone\": \"0\",\n            \"uuid\": \"f229893b-eb51-4019-b418-d147451367cb\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"TexasRibs\",\n            \"phone\": \"0\",\n            \"uuid\": \"e88b4cad-7fa5-4236-9488-91bc0f80086c\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Tecnológico de Monterrey CSF\",\n            \"phone\": \"0\",\n            \"uuid\": \"f244223d-a371-4be1-95ab-23867f1a1197\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"SubZ3ro\",\n            \"phone\": \"0\",\n            \"uuid\": \"d2fb9ba3-798c-47c3-8a78-27a4baed3d4f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Soluglob Ikon\",\n            \"phone\": \"0\",\n            \"uuid\": \"2b5150ad-fd99-4342-91c2-b1bae8afcd9d\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Softexpert\",\n            \"phone\": \"0\",\n            \"uuid\": \"44f94c6b-a2bc-46a8-8caa-bd891266c782\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Socialand\",\n            \"phone\": \"0\",\n            \"uuid\": \"cf71bf9e-20da-4131-a2b1-f02bbec7c23e\"\n        },\n        {\n            \"created\": \"2021-08-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2021-08-02 21:25:37.912000\",\n            \"name\": \"SinCompania\",\n            \"phone\": \"0\",\n            \"uuid\": \"0ed3a4d8-ac69-4fa9-a920-e4678edc271e\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "SortByCreatedASC",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/sort_by_created/asc?page=1&showing_range=30",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								"sort_by_created",
+								"asc"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "showing_range",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SortByCreatedASC Companies - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:9000/v4/companies/sort_by_created/asc?page=1&showing_range=30",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "9000",
+									"path": [
+										"v4",
+										"companies",
+										"sort_by_created",
+										"asc"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7760"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pages\": 8,\n    \"resource\": [\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Nutrisa\",\n            \"phone\": \"0\",\n            \"uuid\": \"2a50ca25-328d-40d2-8192-8915cafa715f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"organization\",\n            \"phone\": \"0\",\n            \"uuid\": \"fb4b74c1-1744-4023-8c4d-c160c343aac1\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Intellego\",\n            \"phone\": \"0\",\n            \"uuid\": \"5034fc6a-2b0f-4d95-a311-22973edf78b1\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"HSBC\",\n            \"phone\": \"0\",\n            \"uuid\": \"557565ca-dc74-4d94-bf8f-67857b63e77d\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"UDEM\",\n            \"phone\": \"0\",\n            \"uuid\": \"f49f8eae-10d7-4a64-95da-5285727995ce\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"BE School\",\n            \"phone\": \"0\",\n            \"uuid\": \"abe50bad-1f06-4a8d-b9d1-02fc97031ffa\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"PALO-IT\",\n            \"phone\": \"0\",\n            \"uuid\": \"a010ddb9-6177-4f90-858b-4bf21dc43158\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"BOSCH\",\n            \"phone\": \"0\",\n            \"uuid\": \"b8ba4cca-4dfb-471e-8369-60cb183ca893\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"NFQ\",\n            \"phone\": \"0\",\n            \"uuid\": \"7c1bb114-a171-4263-b054-53a88808cb4e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"PRESIDENTE\",\n            \"phone\": \"0\",\n            \"uuid\": \"149d8ac7-25e9-4b04-a50e-220e0543dfbc\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Henko\",\n            \"phone\": \"0\",\n            \"uuid\": \"75081c69-4b61-4da7-b1cc-97628b0cc221\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Alyrgo\",\n            \"phone\": \"0\",\n            \"uuid\": \"18408172-fef2-41da-9694-722c5568a715\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Namschul\",\n            \"phone\": \"0\",\n            \"uuid\": \"19bfbc63-f539-44b5-8bcf-966297df6984\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Volvo\",\n            \"phone\": \"0\",\n            \"uuid\": \"db8a46eb-3eae-49dd-949b-cdbdb91aef4e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Celanese\",\n            \"phone\": \"0\",\n            \"uuid\": \"06ed3d86-1b7a-4188-9517-c70cf7f4983c\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Socialand\",\n            \"phone\": \"0\",\n            \"uuid\": \"cf71bf9e-20da-4131-a2b1-f02bbec7c23e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Vepormas\",\n            \"phone\": \"0\",\n            \"uuid\": \"48464c3e-4295-48cc-8b29-f36d51c6f119\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Parks\",\n            \"phone\": \"0\",\n            \"uuid\": \"a9d2db19-bee7-4e06-a087-aa2bd08895cf\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"picard\",\n            \"phone\": \"0\",\n            \"uuid\": \"a6f2670a-1d1f-4ce1-9ac3-fa1f8a2f161f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Softexpert\",\n            \"phone\": \"0\",\n            \"uuid\": \"44f94c6b-a2bc-46a8-8caa-bd891266c782\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Cattri\",\n            \"phone\": \"0\",\n            \"uuid\": \"ebb59a16-a10c-46e7-9a65-bea76073226c\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Beker\",\n            \"phone\": \"0\",\n            \"uuid\": \"fdf19378-d339-4b6f-8ff3-c24b94e946c3\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Nutrisa Plant\",\n            \"phone\": \"0\",\n            \"uuid\": \"892f2b59-0229-4631-a6d9-77dc33a70306\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Exitus Capital\",\n            \"phone\": \"0\",\n            \"uuid\": \"d006d4f7-e99c-45a0-a069-34aff5af2e4b\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Gluo\",\n            \"phone\": \"0\",\n            \"uuid\": \"b25858d7-8845-4e68-aa7a-86ac6193bde9\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"organization_supervisores\",\n            \"phone\": \"0\",\n            \"uuid\": \"6433b784-bfe8-401b-8782-290bc105204f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Voom\",\n            \"phone\": \"0\",\n            \"uuid\": \"bf864d2c-5d3f-4dd8-b14d-25ad299f68f8\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"ServiBenefits\",\n            \"phone\": \"0\",\n            \"uuid\": \"74c77974-cd7f-44be-9a55-071d1aa6380e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Lagash\",\n            \"phone\": \"0\",\n            \"uuid\": \"73e36231-d57d-427b-911f-a0075e708a70\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Inred\",\n            \"phone\": \"0\",\n            \"uuid\": \"ef95b125-f41b-4eeb-83e1-135b29273ad4\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "SortByCreatedDESC",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/sort_by_created/desc?page=1&showing_range=30",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								"sort_by_created",
+								"desc"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "showing_range",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SortByCreatedDESC Companies - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local_url}}/v4/companies/sort_by_created/desc?page=1&showing_range=30",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"companies",
+										"sort_by_created",
+										"desc"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7895"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pages\": 8,\n    \"resource\": [\n        {\n            \"created\": \"2022-06-22 21:00:44.992127\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-06-22 21:00:44.992145\",\n            \"name\": \"prueba\",\n            \"phone\": \"9\",\n            \"uuid\": \"9b27941f-aad1-489c-b2e9-4a63ec7ad80a\"\n        },\n        {\n            \"created\": \"2022-06-22 07:17:01.909946\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-06-22 07:17:01.909954\",\n            \"name\": \"wtf\",\n            \"phone\": \"9\",\n            \"uuid\": \"d6550fdf-dde3-4d1b-a1aa-6051a4b4533d\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Aliat university\",\n            \"phone\": \"0\",\n            \"uuid\": \"e652f4df-7a32-452f-a13b-156a0a8afe3f\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Menzies Aviation\",\n            \"phone\": \"0\",\n            \"uuid\": \"f139f8b2-171b-49f2-a533-181f5cbb4251\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Quintana Ingenieros\",\n            \"phone\": \"0\",\n            \"uuid\": \"a00b24f8-edcb-4bdc-a3f5-4f9e6038826f\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Meli - Morelia\",\n            \"phone\": \"0\",\n            \"uuid\": \"cff4254f-e781-40b8-9a53-ccaa701ec82d\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"INRED\",\n            \"phone\": \"0\",\n            \"uuid\": \"32556e91-ff35-493b-a4e9-8132f8167906\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Amazon MEX5 ROC\",\n            \"phone\": \"0\",\n            \"uuid\": \"4b811fab-87c7-4cf7-ba4c-d420c2947bc8\"\n        },\n        {\n            \"created\": \"2022-04-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-04-02 21:25:37.912000\",\n            \"name\": \"Huawei\",\n            \"phone\": \"0\",\n            \"uuid\": \"acf43b99-e919-4c3e-9077-c72bccd160db\"\n        },\n        {\n            \"created\": \"2022-04-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-04-02 21:25:37.912000\",\n            \"name\": \"Evonik\",\n            \"phone\": \"0\",\n            \"uuid\": \"91c0f806-d41b-4828-ad0a-bd3cd13f1110\"\n        },\n        {\n            \"created\": \"2022-04-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-04-02 21:25:37.912000\",\n            \"name\": \"Femsa\",\n            \"phone\": \"0\",\n            \"uuid\": \"5f0a3f9c-8f68-47ae-a0f9-6acbf62f4783\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-03-02 21:25:37.912000\",\n            \"name\": \"CASKA\",\n            \"phone\": \"0\",\n            \"uuid\": \"1e2dec41-8071-4018-8ccb-e4f6cf3f9ceb\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-03-02 21:25:37.912000\",\n            \"name\": \"ESSITY\",\n            \"phone\": \"0\",\n            \"uuid\": \"14c8bfa4-ab0b-451c-8a42-095ef120c84a\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-03-02 21:25:37.912000\",\n            \"name\": \"SONY\",\n            \"phone\": \"0\",\n            \"uuid\": \"44ec5968-df6d-461c-92d8-8764df828d3b\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-03-02 21:25:37.912000\",\n            \"name\": \"Meli Queretaro\",\n            \"phone\": \"0\",\n            \"uuid\": \"8eee43a4-a846-4ce0-ac89-d3119b6a14f8\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": false,\n            \"modified\": \"2022-06-22 23:20:00.781574\",\n            \"name\": \"Dovecreek\",\n            \"phone\": \"8\",\n            \"uuid\": \"96fc6bea-83e6-41c1-a6c4-f7e4b946316a\"\n        },\n        {\n            \"created\": \"2022-02-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-09 21:25:37.912000\",\n            \"name\": \"CONCENTRIX\",\n            \"phone\": \"0\",\n            \"uuid\": \"82ded6b6-03be-4172-a2d3-0dedb2233870\"\n        },\n        {\n            \"created\": \"2022-02-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-09 21:25:37.912000\",\n            \"name\": \"Vitasanitas\",\n            \"phone\": \"0\",\n            \"uuid\": \"f58d3853-26e2-4c5c-a836-510002a38539\"\n        },\n        {\n            \"created\": \"2022-02-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-09 21:25:37.912000\",\n            \"name\": \"Quiken MTY\",\n            \"phone\": \"0\",\n            \"uuid\": \"5d4605c8-368f-414c-af5b-b8dd3dd0f546\"\n        },\n        {\n            \"created\": \"2022-02-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-02 21:25:37.912000\",\n            \"name\": \"UVM\",\n            \"phone\": \"0\",\n            \"uuid\": \"4ff153d5-a962-4896-904b-542438515686\"\n        },\n        {\n            \"created\": \"2022-02-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-02 21:25:37.912000\",\n            \"name\": \"AGNP MTY\",\n            \"phone\": \"0\",\n            \"uuid\": \"414de945-4783-410b-b77d-47aa36776726\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Comex - Chihuahua\",\n            \"phone\": \"0\",\n            \"uuid\": \"0d0d1925-baa0-44ff-8591-e27386d48397\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Comex - Tijuana\",\n            \"phone\": \"0\",\n            \"uuid\": \"2302ff6d-9340-479c-a76c-dca384b29950\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Comex - Minatitlán\",\n            \"phone\": \"0\",\n            \"uuid\": \"532c17db-cd7b-4e3f-893d-7c86446e24dd\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Toluca\",\n            \"phone\": \"0\",\n            \"uuid\": \"90a922e6-6b02-4a14-a687-0dacef0257a9\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Puebla\",\n            \"phone\": \"0\",\n            \"uuid\": \"f9dbf28e-0b7d-4f61-9daa-e493b185afe5\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Villahermosa\",\n            \"phone\": \"0\",\n            \"uuid\": \"d3952988-3d73-4bd4-8dcb-bfb3e0d00b0b\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Culiacán\",\n            \"phone\": \"0\",\n            \"uuid\": \"3f43add2-377d-4785-9cf9-5759544d5e5d\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Guadalajara\",\n            \"phone\": \"0\",\n            \"uuid\": \"a15d084b-35bc-4044-9b57-77f4ac6ecaae\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Monterrey\",\n            \"phone\": \"0\",\n            \"uuid\": \"bd9034e4-8078-4b5b-895c-618d19e612ee\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "SortByModifiedASC",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/sort_by_modified/asc?page=1&showing_range=30",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								"sort_by_modified",
+								"asc"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "showing_range",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SortByModifiedASC Companies - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local_url}}/v4/companies/sort_by_modified/asc?page=1&showing_range=30",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"companies",
+										"sort_by_modified",
+										"asc"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7760"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pages\": 8,\n    \"resource\": [\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Nutrisa\",\n            \"phone\": \"0\",\n            \"uuid\": \"2a50ca25-328d-40d2-8192-8915cafa715f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"organization\",\n            \"phone\": \"0\",\n            \"uuid\": \"fb4b74c1-1744-4023-8c4d-c160c343aac1\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Intellego\",\n            \"phone\": \"0\",\n            \"uuid\": \"5034fc6a-2b0f-4d95-a311-22973edf78b1\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"HSBC\",\n            \"phone\": \"0\",\n            \"uuid\": \"557565ca-dc74-4d94-bf8f-67857b63e77d\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"UDEM\",\n            \"phone\": \"0\",\n            \"uuid\": \"f49f8eae-10d7-4a64-95da-5285727995ce\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"BE School\",\n            \"phone\": \"0\",\n            \"uuid\": \"abe50bad-1f06-4a8d-b9d1-02fc97031ffa\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"PALO-IT\",\n            \"phone\": \"0\",\n            \"uuid\": \"a010ddb9-6177-4f90-858b-4bf21dc43158\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"BOSCH\",\n            \"phone\": \"0\",\n            \"uuid\": \"b8ba4cca-4dfb-471e-8369-60cb183ca893\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"NFQ\",\n            \"phone\": \"0\",\n            \"uuid\": \"7c1bb114-a171-4263-b054-53a88808cb4e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"PRESIDENTE\",\n            \"phone\": \"0\",\n            \"uuid\": \"149d8ac7-25e9-4b04-a50e-220e0543dfbc\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Henko\",\n            \"phone\": \"0\",\n            \"uuid\": \"75081c69-4b61-4da7-b1cc-97628b0cc221\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Alyrgo\",\n            \"phone\": \"0\",\n            \"uuid\": \"18408172-fef2-41da-9694-722c5568a715\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Namschul\",\n            \"phone\": \"0\",\n            \"uuid\": \"19bfbc63-f539-44b5-8bcf-966297df6984\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Volvo\",\n            \"phone\": \"0\",\n            \"uuid\": \"db8a46eb-3eae-49dd-949b-cdbdb91aef4e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Celanese\",\n            \"phone\": \"0\",\n            \"uuid\": \"06ed3d86-1b7a-4188-9517-c70cf7f4983c\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Socialand\",\n            \"phone\": \"0\",\n            \"uuid\": \"cf71bf9e-20da-4131-a2b1-f02bbec7c23e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Vepormas\",\n            \"phone\": \"0\",\n            \"uuid\": \"48464c3e-4295-48cc-8b29-f36d51c6f119\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Parks\",\n            \"phone\": \"0\",\n            \"uuid\": \"a9d2db19-bee7-4e06-a087-aa2bd08895cf\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"picard\",\n            \"phone\": \"0\",\n            \"uuid\": \"a6f2670a-1d1f-4ce1-9ac3-fa1f8a2f161f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Softexpert\",\n            \"phone\": \"0\",\n            \"uuid\": \"44f94c6b-a2bc-46a8-8caa-bd891266c782\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Cattri\",\n            \"phone\": \"0\",\n            \"uuid\": \"ebb59a16-a10c-46e7-9a65-bea76073226c\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Beker\",\n            \"phone\": \"0\",\n            \"uuid\": \"fdf19378-d339-4b6f-8ff3-c24b94e946c3\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Nutrisa Plant\",\n            \"phone\": \"0\",\n            \"uuid\": \"892f2b59-0229-4631-a6d9-77dc33a70306\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Exitus Capital\",\n            \"phone\": \"0\",\n            \"uuid\": \"d006d4f7-e99c-45a0-a069-34aff5af2e4b\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Gluo\",\n            \"phone\": \"0\",\n            \"uuid\": \"b25858d7-8845-4e68-aa7a-86ac6193bde9\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"organization_supervisores\",\n            \"phone\": \"0\",\n            \"uuid\": \"6433b784-bfe8-401b-8782-290bc105204f\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Voom\",\n            \"phone\": \"0\",\n            \"uuid\": \"bf864d2c-5d3f-4dd8-b14d-25ad299f68f8\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"ServiBenefits\",\n            \"phone\": \"0\",\n            \"uuid\": \"74c77974-cd7f-44be-9a55-071d1aa6380e\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Lagash\",\n            \"phone\": \"0\",\n            \"uuid\": \"73e36231-d57d-427b-911f-a0075e708a70\"\n        },\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2020-12-09 21:25:37.912000\",\n            \"name\": \"Inred\",\n            \"phone\": \"0\",\n            \"uuid\": \"ef95b125-f41b-4eeb-83e1-135b29273ad4\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "SortByModifiedDESC",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}/v4/companies/sort_by_modified/desc?page=1&showing_range=30",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"v4",
+								"companies",
+								"sort_by_modified",
+								"desc"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "showing_range",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SortByModifiedDESC Companies - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local_url}}/v4/companies/sort_by_modified/desc?page=1&showing_range=30",
+									"host": [
+										"{{local_url}}"
+									],
+									"path": [
+										"v4",
+										"companies",
+										"sort_by_modified",
+										"desc"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "showing_range",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7881"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pages\": 8,\n    \"resource\": [\n        {\n            \"created\": \"2020-12-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-06-22 23:27:08.872186\",\n            \"name\": \"ABSA\",\n            \"phone\": \"0\",\n            \"uuid\": \"cf959795-c7fd-45a8-9c1f-de23a8f2888d\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": false,\n            \"modified\": \"2022-06-22 23:20:00.781574\",\n            \"name\": \"Dovecreek\",\n            \"phone\": \"8\",\n            \"uuid\": \"96fc6bea-83e6-41c1-a6c4-f7e4b946316a\"\n        },\n        {\n            \"created\": \"2022-06-22 21:00:44.992127\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-06-22 21:00:44.992145\",\n            \"name\": \"prueba\",\n            \"phone\": \"9\",\n            \"uuid\": \"9b27941f-aad1-489c-b2e9-4a63ec7ad80a\"\n        },\n        {\n            \"created\": \"2022-06-22 07:17:01.909946\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-06-22 07:17:01.909954\",\n            \"name\": \"wtf\",\n            \"phone\": \"9\",\n            \"uuid\": \"d6550fdf-dde3-4d1b-a1aa-6051a4b4533d\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Aliat university\",\n            \"phone\": \"0\",\n            \"uuid\": \"e652f4df-7a32-452f-a13b-156a0a8afe3f\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Menzies Aviation\",\n            \"phone\": \"0\",\n            \"uuid\": \"f139f8b2-171b-49f2-a533-181f5cbb4251\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Quintana Ingenieros\",\n            \"phone\": \"0\",\n            \"uuid\": \"a00b24f8-edcb-4bdc-a3f5-4f9e6038826f\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Meli - Morelia\",\n            \"phone\": \"0\",\n            \"uuid\": \"cff4254f-e781-40b8-9a53-ccaa701ec82d\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"INRED\",\n            \"phone\": \"0\",\n            \"uuid\": \"32556e91-ff35-493b-a4e9-8132f8167906\"\n        },\n        {\n            \"created\": \"2022-05-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-05-02 21:25:37.912000\",\n            \"name\": \"Amazon MEX5 ROC\",\n            \"phone\": \"0\",\n            \"uuid\": \"4b811fab-87c7-4cf7-ba4c-d420c2947bc8\"\n        },\n        {\n            \"created\": \"2022-04-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-04-02 21:25:37.912000\",\n            \"name\": \"Huawei\",\n            \"phone\": \"0\",\n            \"uuid\": \"acf43b99-e919-4c3e-9077-c72bccd160db\"\n        },\n        {\n            \"created\": \"2022-04-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-04-02 21:25:37.912000\",\n            \"name\": \"Evonik\",\n            \"phone\": \"0\",\n            \"uuid\": \"91c0f806-d41b-4828-ad0a-bd3cd13f1110\"\n        },\n        {\n            \"created\": \"2022-04-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-04-02 21:25:37.912000\",\n            \"name\": \"Femsa\",\n            \"phone\": \"0\",\n            \"uuid\": \"5f0a3f9c-8f68-47ae-a0f9-6acbf62f4783\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-03-02 21:25:37.912000\",\n            \"name\": \"CASKA\",\n            \"phone\": \"0\",\n            \"uuid\": \"1e2dec41-8071-4018-8ccb-e4f6cf3f9ceb\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-03-02 21:25:37.912000\",\n            \"name\": \"ESSITY\",\n            \"phone\": \"0\",\n            \"uuid\": \"14c8bfa4-ab0b-451c-8a42-095ef120c84a\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-03-02 21:25:37.912000\",\n            \"name\": \"SONY\",\n            \"phone\": \"0\",\n            \"uuid\": \"44ec5968-df6d-461c-92d8-8764df828d3b\"\n        },\n        {\n            \"created\": \"2022-03-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-03-02 21:25:37.912000\",\n            \"name\": \"Meli Queretaro\",\n            \"phone\": \"0\",\n            \"uuid\": \"8eee43a4-a846-4ce0-ac89-d3119b6a14f8\"\n        },\n        {\n            \"created\": \"2022-02-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-09 21:25:37.912000\",\n            \"name\": \"CONCENTRIX\",\n            \"phone\": \"0\",\n            \"uuid\": \"82ded6b6-03be-4172-a2d3-0dedb2233870\"\n        },\n        {\n            \"created\": \"2022-02-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-09 21:25:37.912000\",\n            \"name\": \"Vitasanitas\",\n            \"phone\": \"0\",\n            \"uuid\": \"f58d3853-26e2-4c5c-a836-510002a38539\"\n        },\n        {\n            \"created\": \"2022-02-09 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-09 21:25:37.912000\",\n            \"name\": \"Quiken MTY\",\n            \"phone\": \"0\",\n            \"uuid\": \"5d4605c8-368f-414c-af5b-b8dd3dd0f546\"\n        },\n        {\n            \"created\": \"2022-02-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-02 21:25:37.912000\",\n            \"name\": \"UVM\",\n            \"phone\": \"0\",\n            \"uuid\": \"4ff153d5-a962-4896-904b-542438515686\"\n        },\n        {\n            \"created\": \"2022-02-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-02-02 21:25:37.912000\",\n            \"name\": \"AGNP MTY\",\n            \"phone\": \"0\",\n            \"uuid\": \"414de945-4783-410b-b77d-47aa36776726\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Comex - Chihuahua\",\n            \"phone\": \"0\",\n            \"uuid\": \"0d0d1925-baa0-44ff-8591-e27386d48397\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Comex - Tijuana\",\n            \"phone\": \"0\",\n            \"uuid\": \"2302ff6d-9340-479c-a76c-dca384b29950\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Comex - Minatitlán\",\n            \"phone\": \"0\",\n            \"uuid\": \"532c17db-cd7b-4e3f-893d-7c86446e24dd\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Toluca\",\n            \"phone\": \"0\",\n            \"uuid\": \"90a922e6-6b02-4a14-a687-0dacef0257a9\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Puebla\",\n            \"phone\": \"0\",\n            \"uuid\": \"f9dbf28e-0b7d-4f61-9daa-e493b185afe5\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Villahermosa\",\n            \"phone\": \"0\",\n            \"uuid\": \"d3952988-3d73-4bd4-8dcb-bfb3e0d00b0b\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Culiacán\",\n            \"phone\": \"0\",\n            \"uuid\": \"3f43add2-377d-4785-9cf9-5759544d5e5d\"\n        },\n        {\n            \"created\": \"2022-01-02 21:25:37.912000\",\n            \"email\": \"\",\n            \"is_active\": true,\n            \"modified\": \"2022-01-02 21:25:37.912000\",\n            \"name\": \"Danone - Guadalajara\",\n            \"phone\": \"0\",\n            \"uuid\": \"a15d084b-35bc-4044-9b57-77f4ac6ecaae\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local_url",
+			"value": "127.0.0.1:9000",
+			"type": "string"
+		},
+		{
+			"key": "dev_url",
+			"value": "https://ms-companies-dev.organization.com",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTk2MjAzNiwianRpIjoiNTIxYjhmNjQtZTgwZC00OWEyLTgyNzktMTYwN2E1NWY3YzNkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImtodlI1ODVzSGU2R2VDUGdwQWZHUUcydSIsIm5iZiI6MTY1NTk2MjAzNiwiZXhwIjoxNjU1OTYyOTM2fQ.F71J6utriAkjFkJxw8s4D17dEA4Re4LpM34iJO3wijc",
+			"type": "string"
+		}
+	]
+}
